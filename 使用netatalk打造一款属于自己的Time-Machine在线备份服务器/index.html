@@ -1,0 +1,1336 @@
+<!DOCTYPE html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+<html class="theme-next gemini" lang="zh-CN">
+<head><meta name="generator" content="Hexo 3.8.0">
+  <meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+    
+    <link rel="stylesheet" href="https://fonts.loli.net/css?family=Noto Sans SC:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext">
+  
+
+
+
+
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2">
+
+<link rel="stylesheet" href="/css/main.css?v=6.7.0">
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/favicon/lightbulb_16.png?v=6.7.0">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon/lightbulb_32.png?v=6.7.0">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon/lightbulb_16.png?v=6.7.0">
+
+
+  <link rel="mask-icon" href="/images/favicon/lightbulb_16.png?v=6.7.0" color="#222">
+
+
+
+
+
+
+
+<script id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Gemini',
+    version: '6.7.0',
+    sidebar: {"position":"right","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: false,
+    fastclick: false,
+    lazyload: false,
+    tabs: true,
+    motion: {"enable":false,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+  
+
+
+
+
+  <meta name="description" content="前言MAC系统的Time Machine功能曾经拯救过我电脑几次，对于我这种爱折腾的人来说十分有用但是麻烦的点在于每次需要手动备份，需要插上移动硬盘来进行备份，就很不方便，有时会忘掉其实MAC是可以在合适的网络硬盘上进行备份的，比如部分NAS，群辉等，但是都太贵了，于是我自己买了一套路由器大小的微型服务器，配置了一块2T硬盘，配置比较一般，但是作为服务器来说够用了，之后就可以安装centos系统并">
+<meta name="keywords" content="教程">
+<meta property="og:type" content="article">
+<meta property="og:title" content="使用netatalk打造一款属于自己的Time-Machine在线备份服务器">
+<meta property="og:url" content="https://blog.maxisvest.com/使用netatalk打造一款属于自己的Time-Machine在线备份服务器/index.html">
+<meta property="og:site_name" content="Maxisvest的博客">
+<meta property="og:description" content="前言MAC系统的Time Machine功能曾经拯救过我电脑几次，对于我这种爱折腾的人来说十分有用但是麻烦的点在于每次需要手动备份，需要插上移动硬盘来进行备份，就很不方便，有时会忘掉其实MAC是可以在合适的网络硬盘上进行备份的，比如部分NAS，群辉等，但是都太贵了，于是我自己买了一套路由器大小的微型服务器，配置了一块2T硬盘，配置比较一般，但是作为服务器来说够用了，之后就可以安装centos系统并">
+<meta property="og:locale" content="zh-CN">
+<meta property="og:image" content="https://blog.maxisvest.com/使用netatalk打造一款属于自己的Time-Machine在线备份服务器/b.png">
+<meta property="og:image" content="https://blog.maxisvest.com/使用netatalk打造一款属于自己的Time-Machine在线备份服务器/c.png">
+<meta property="og:image" content="https://blog.maxisvest.com/使用netatalk打造一款属于自己的Time-Machine在线备份服务器/d.png">
+<meta property="og:image" content="https://blog.maxisvest.com/使用netatalk打造一款属于自己的Time-Machine在线备份服务器/e.png">
+<meta property="og:updated_time" content="2021-11-19T08:49:04.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="使用netatalk打造一款属于自己的Time-Machine在线备份服务器">
+<meta name="twitter:description" content="前言MAC系统的Time Machine功能曾经拯救过我电脑几次，对于我这种爱折腾的人来说十分有用但是麻烦的点在于每次需要手动备份，需要插上移动硬盘来进行备份，就很不方便，有时会忘掉其实MAC是可以在合适的网络硬盘上进行备份的，比如部分NAS，群辉等，但是都太贵了，于是我自己买了一套路由器大小的微型服务器，配置了一块2T硬盘，配置比较一般，但是作为服务器来说够用了，之后就可以安装centos系统并">
+<meta name="twitter:image" content="https://blog.maxisvest.com/使用netatalk打造一款属于自己的Time-Machine在线备份服务器/b.png">
+
+
+
+
+
+
+  <link rel="canonical" href="https://blog.maxisvest.com/使用netatalk打造一款属于自己的Time-Machine在线备份服务器/">
+
+
+
+<script id="page.configurations">
+  CONFIG.page = {
+    sidebar: "",
+  };
+</script>
+
+  <title>使用netatalk打造一款属于自己的Time-Machine在线备份服务器 | Maxisvest的博客</title>
+  
+
+
+
+
+
+
+  <script>
+    var _hmt = _hmt || [];
+    (function() {
+      var hm = document.createElement("script");
+      hm.src = "https://hm.baidu.com/hm.js?1d24e09910adc158b71c9cf31d624db0";
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(hm, s);
+    })();
+  </script>
+
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .motion-element,
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-title { opacity: initial; }
+
+  .use-motion .logo,
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope="" itemtype="http://schema.org/WebPage" lang="zh-CN">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-right page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope="" itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">Maxisvest的博客</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+    
+      
+        <h1 class="site-subtitle" itemprop="description">技术 生活 原创</h1>
+      
+    
+    
+  </div>
+
+  <div class="site-nav-toggle">
+    <button aria-label="切换导航栏">
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  
+    <ul id="menu" class="menu">
+      
+        
+        
+        
+          
+          <li class="menu-item menu-item-home">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/" rel="section"><i class="menu-item-icon fa fa-fw fa-home"></i> <br>首页</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-tags">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/tags/" rel="section"><i class="menu-item-icon fa fa-fw fa-tags"></i> <br>标签</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-categories">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/categories/" rel="section"><i class="menu-item-icon fa fa-fw fa-th"></i> <br>分类</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-archives">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/archives/" rel="section"><i class="menu-item-icon fa fa-fw fa-archive"></i> <br>归档</a>
+
+  </li>
+
+      
+      
+        <li class="menu-item menu-item-search">
+          
+            <a href="javascript:;" class="popup-trigger">
+          
+            
+              <i class="menu-item-icon fa fa-search fa-fw"></i> <br>搜索</a>
+        </li>
+      
+    </ul>
+  
+
+  
+
+  
+    <div class="site-search">
+      
+  <div class="popup search-popup local-search-popup">
+  <div class="local-search-header clearfix">
+    <span class="search-icon">
+      <i class="fa fa-search"></i>
+    </span>
+    <span class="popup-btn-close">
+      <i class="fa fa-times-circle"></i>
+    </span>
+    <div class="local-search-input-wrapper">
+      <input autocomplete="off" placeholder="搜索..." spellcheck="false" type="text" id="local-search-input">
+    </div>
+  </div>
+  <div id="local-search-result"></div>
+</div>
+
+
+
+    </div>
+  
+</nav>
+
+
+
+  
+
+
+
+</div>
+    </header>
+
+    
+
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+            
+
+          
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://blog.maxisvest.com/使用netatalk打造一款属于自己的Time-Machine在线备份服务器/">
+
+    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="小于同学">
+      <meta itemprop="description" content="技术 生活 原创">
+      <meta itemprop="image" content="/images/avatarPicture/IMG_3667.JPG">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Maxisvest的博客">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h2 class="post-title" itemprop="name headline">使用netatalk打造一款属于自己的Time-Machine在线备份服务器
+
+              
+            
+          </h2>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+
+            
+            
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+
+              
+                
+              
+
+              <time title="创建时间：2021-02-23 10:42:18" itemprop="dateCreated datePublished" datetime="2021-02-23T10:42:18+08:00">2021-02-23</time>
+            
+
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing"><a href="/categories/mac/" itemprop="url" rel="index"><span itemprop="name">mac</span></a></span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+            
+          
+
+          
+          
+
+          
+            <span style="display:none">
+              阅读次数: <span class="busuanzi-value" id="busuanzi_value_page_pv"></span>
+            </span>
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>MAC系统的Time Machine功能曾经拯救过我电脑几次，对于我这种爱折腾的人来说十分有用<br>但是麻烦的点在于每次需要手动备份，需要插上移动硬盘来进行备份，就很不方便，有时会忘掉<br>其实MAC是可以在合适的网络硬盘上进行备份的，比如部分NAS，群辉等，但是都太贵了，于是我自己买了一套路由器大小的微型服务器，配置了一块2T硬盘，配置比较一般，但是作为服务器来说够用了，<br>之后就可以安装centos系统并且安装netatalk和avahi来让mac备份到这台服务器上</p>
+<h2 id="1-下载centos7的镜像，将该镜像刻录至U盘"><a href="#1-下载centos7的镜像，将该镜像刻录至U盘" class="headerlink" title="1.下载centos7的镜像，将该镜像刻录至U盘"></a>1.下载centos7的镜像，将该镜像刻录至U盘</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">#命令确定U盘的路径</span><br><span class="line">diskutil list </span><br><span class="line">#卸载U盘（这里/dev/disk2是查到的U盘路径，一定要确认对）</span><br><span class="line">diskutil unmountDisk /dev/disk2 </span><br><span class="line">#安装pv工具</span><br><span class="line">brew install pv</span><br><span class="line">#可视化刻录进度并刻录镜像</span><br><span class="line">pv -cN source &lt; 镜像路径 | sudo dd of=/dev/rdisk2 bs=4m</span><br><span class="line">## 显示下面进度</span><br><span class="line">source:  5.2GiB 5:11:41 [ 503KiB/s] [=====================&gt;       ] 71% ETA 2:01:56</span><br></pre></td></tr></table></figure>
+<h2 id="2-安装centos7"><a href="#2-安装centos7" class="headerlink" title="2.安装centos7"></a>2.安装centos7</h2><h2 id="3-连接网络"><a href="#3-连接网络" class="headerlink" title="3.连接网络"></a>3.连接网络</h2><p>可以选择网线直连或者wifi连接，我这里使用的是wifi连接<br>因为我的无线网卡为高通QCA9377，似乎属于旧版网卡，所以进入系统后打开终端，输入<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">cd lib/firmware/ath10k/QCA9377/hw1.0/</span><br><span class="line">sudo mv firmware-6.bin ~</span><br><span class="line">sudo mv notice_ath10k_firmware-6.txt ~</span><br></pre></td></tr></table></figure></p>
+<a id="more"></a>
+<p>来移除不兼容的wifi驱动，留下firmware-5.bin和notice_ath10k_firmware-5.txt即可<br>这样就可以使用wifi了</p>
+<h2 id="4-安装netatalk和avahi"><a href="#4-安装netatalk和avahi" class="headerlink" title="4.安装netatalk和avahi"></a>4.安装netatalk和avahi</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">#安装编译所以依赖</span><br><span class="line">yum install gcc make</span><br><span class="line">yum install libgcrypt-devel libdb-devel</span><br><span class="line"></span><br><span class="line">#开始准备编译和安装</span><br><span class="line">cd &quot;你新建的文件夹&quot;</span><br><span class="line">wget http://sourceforge.net/projects/netatalk/files/netatalk/3.1.12/netatalk-3.1.12.tar.gz</span><br><span class="line">tar zvxf netatalk-3.1.12.tar.gz</span><br><span class="line">cd netatalk-3.1.12</span><br><span class="line">./configure --with-init-style=redhat-systemd </span><br><span class="line">make</span><br><span class="line">make install</span><br></pre></td></tr></table></figure>
+<p>安装后在某个位置新建文件夹当做备份文件夹，按如下配置编辑配置文件<br><code>vi /usr/local/etc/afp.conf</code><br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">[TimeMachine]</span><br><span class="line">  path=你的备份文件夹</span><br><span class="line">  time machine=yes</span><br><span class="line">  vol size limit = 500000 #这是限制500GB</span><br></pre></td></tr></table></figure></p>
+<h2 id="5-安装avahi用于网络发现"><a href="#5-安装avahi用于网络发现" class="headerlink" title="5.安装avahi用于网络发现"></a>5.安装avahi用于网络发现</h2><p>安装avahi<br><code>yum install avahi</code><br>然后增加配置文件 <code>vi /etc/avahi/services/afpd.service</code>，如果没有的话就新建一个<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">&lt;?xml version=&quot;1.0&quot; standalone=&apos;no&apos;?&gt;</span><br><span class="line">	&lt;!DOCTYPE service-group SYSTEM &quot;avahi-service.dtd&quot;&gt;</span><br><span class="line">	&lt;service-group&gt;</span><br><span class="line">	&lt;name replace-wildcards=&quot;yes&quot;&gt;%h&lt;/name&gt;</span><br><span class="line">	&lt;service&gt;</span><br><span class="line">	&lt;type&gt;_afpovertcp._tcp&lt;/type&gt;</span><br><span class="line">	&lt;port&gt;548&lt;/port&gt;</span><br><span class="line">	&lt;/service&gt;</span><br><span class="line">	&lt;service&gt;</span><br><span class="line">	&lt;type&gt;_device-info._tcp&lt;/type&gt;</span><br><span class="line">	&lt;port&gt;0&lt;/port&gt;</span><br><span class="line">	&lt;txt-record&gt;model=TimeCapsule&lt;/txt-record&gt;</span><br><span class="line">	&lt;/service&gt;</span><br><span class="line">	&lt;/service-group&gt;</span><br></pre></td></tr></table></figure></p>
+<h2 id="6-设置开机启动"><a href="#6-设置开机启动" class="headerlink" title="6.设置开机启动"></a>6.设置开机启动</h2><p>启动程序并设置开机启动<br><code>systemctl start avahi-daemon</code><br><code>systemctl start netatalk</code><br><code>systemctl enable avahi-daemon</code><br><code>systemctl enable netatalk</code><br>关闭防火墙或者开放 548 端口，否则可能无法连接到netatalk暴露的端口</p>
+<h2 id="7-MAC端配置"><a href="#7-MAC端配置" class="headerlink" title="7.MAC端配置"></a>7.MAC端配置</h2><p>打开mac的finder，<code>command + k</code>，连接到你的服务器的ip，并输入服务器的用户名密码<br>    <code>afp://192.168.1.X</code><br><img src="/使用netatalk打造一款属于自己的Time-Machine在线备份服务器/b.png"></p>
+<p>在系统设置中将加载的网络服务器设置为备份硬盘即可<br><img src="/使用netatalk打造一款属于自己的Time-Machine在线备份服务器/c.png"></p>
+<p>之后使用过程中，MAC会自动寻找局域网内由avahi广播的机器，自动加载添加过的网络硬盘并备份<br><img src="/使用netatalk打造一款属于自己的Time-Machine在线备份服务器/d.png"></p>
+<h2 id="8-恢复文件或恢复系统"><a href="#8-恢复文件或恢复系统" class="headerlink" title="8.恢复文件或恢复系统"></a>8.恢复文件或恢复系统</h2><h3 id="恢复文件"><a href="#恢复文件" class="headerlink" title="恢复文件"></a>恢复文件</h3><p>点击时间机器图标并点击进入时间机器，稍等会便会加载出网络上的时间机器的备份内容，右键某个时间的你想恢复的文件，选择恢复至即可<br><img src="/使用netatalk打造一款属于自己的Time-Machine在线备份服务器/e.png"></p>
+<h3 id="恢复系统"><a href="#恢复系统" class="headerlink" title="恢复系统"></a>恢复系统</h3><p>如果你的MAC挂了，可以通过如下方式全盘恢复你的MAC到一个时间点</p>
+<p>开机按住command + R 进入恢复模式<br>选择时间机器恢复<br>点击选择网络服务器<br>输入 afp://用户名:密码@IP地址/网络备份磁盘名<br>例如 我服务器IP为192.168.50.74，网络备份磁盘名 TIME MACHINE ONLINE，其中的空格需要转义<br>afp://yu:<a href="mailto:password@192.168.50.74" target="_blank" rel="noopener">password@192.168.50.74</a>/TIME%20MACHINE%20ONLINE<br>回车添加即可<br>然后选择对应的恢复备份即可恢复</p>
+
+      
+    </div>
+
+    
+
+    
+    
+    
+
+    
+
+    
+      
+    
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/教程/" rel="tag"># 教程</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/camunda引擎初探/" rel="next" title="camunda流程引擎简明教程">
+                <i class="fa fa-chevron-left"></i> camunda流程引擎简明教程
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/全链路日志追踪方案及核心代码分析/" rel="prev" title="全链路日志追踪方案及MDC代码分析">
+                全链路日志追踪方案及MDC代码分析 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+  </div>
+
+
+          </div>
+          
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+            
+              <img class="site-author-image" itemprop="image" src="/images/avatarPicture/IMG_3667.JPG" alt="小于同学">
+            
+              <p class="site-author-name" itemprop="name">小于同学</p>
+              <p class="site-description motion-element" itemprop="description">技术 生活 原创</p>
+          </div>
+
+          
+            <nav class="site-state motion-element">
+              
+                <div class="site-state-item site-state-posts">
+                
+                  <a href="/archives/">
+                
+                    <span class="site-state-item-count">47</span>
+                    <span class="site-state-item-name">日志</span>
+                  </a>
+                </div>
+              
+
+              
+                
+                
+                <div class="site-state-item site-state-categories">
+                  <a href="/categories/index.html">
+                    
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                    <span class="site-state-item-count">13</span>
+                    <span class="site-state-item-name">分类</span>
+                  </a>
+                </div>
+              
+
+              
+                
+                
+                <div class="site-state-item site-state-tags">
+                  <a href="/tags/index.html">
+                    
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                    <span class="site-state-item-count">33</span>
+                    <span class="site-state-item-name">标签</span>
+                  </a>
+                </div>
+              
+            </nav>
+          
+
+          
+
+          
+            <div class="links-of-author motion-element">
+              
+                <span class="links-of-author-item">
+                  
+                  
+                    
+                  
+                  
+                    
+                  
+                  <a href="mailto:maxisvest@163.com" title="E-Mail &rarr; mailto:maxisvest@163.com" rel="noopener" target="_blank"><i class="fa fa-fw fa-globe"></i>E-Mail</a>
+                </span>
+              
+            </div>
+          
+
+          
+
+          
+          
+
+          
+            
+          
+          
+
+        </div>
+      </div>
+
+      
+      <!--noindex-->
+        <div class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+            
+            
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#前言"><span class="nav-number">1.</span> <span class="nav-text">前言</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#1-下载centos7的镜像，将该镜像刻录至U盘"><span class="nav-number">2.</span> <span class="nav-text">1.下载centos7的镜像，将该镜像刻录至U盘</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2-安装centos7"><span class="nav-number">3.</span> <span class="nav-text">2.安装centos7</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#3-连接网络"><span class="nav-number">4.</span> <span class="nav-text">3.连接网络</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#4-安装netatalk和avahi"><span class="nav-number">5.</span> <span class="nav-text">4.安装netatalk和avahi</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#5-安装avahi用于网络发现"><span class="nav-number">6.</span> <span class="nav-text">5.安装avahi用于网络发现</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#6-设置开机启动"><span class="nav-number">7.</span> <span class="nav-text">6.设置开机启动</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#7-MAC端配置"><span class="nav-number">8.</span> <span class="nav-text">7.MAC端配置</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#8-恢复文件或恢复系统"><span class="nav-number">9.</span> <span class="nav-text">8.恢复文件或恢复系统</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#恢复文件"><span class="nav-number">9.1.</span> <span class="nav-text">恢复文件</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#恢复系统"><span class="nav-number">9.2.</span> <span class="nav-text">恢复系统</span></a></li></ol></li></ol></div>
+            
+
+          </div>
+        </div>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; 2016 – <span itemprop="copyrightYear">2022</span>
+  <span class="with-love" id="animate">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">小于同学</span>
+
+  
+
+  
+</div>
+
+
+
+
+
+
+
+
+
+        
+<div class="busuanzi-count">
+  <script async src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+  
+    <span class="post-meta-item-icon">
+      <i class="fa fa-user"></i>
+    </span>
+    <span class="site-uv" style="display:none" title="总访客量">
+      总访客量 <span class="busuanzi-value" id="busuanzi_value_site_uv"></span>
+    </span>
+  
+
+  
+
+  
+      <span class="post-meta-item-icon">
+        <i class="fa fa-user"></i>
+      </span>
+      <span class="site-pv" style="display:none" title="总访问量">
+        合计阅读数 <span class="busuanzi-value" id="busuanzi_value_site_pv"></span>
+      </span>
+  
+</div>
+
+
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+    
+
+    
+  </div>
+
+  
+
+<script>
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+
+
+
+
+
+
+
+  
+  <script src="/lib/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script src="/lib/three/three.min.js"></script>
+
+  
+  <script src="/lib/three/canvas_sphere.min.js"></script>
+
+
+  
+
+
+  <script src="/js/src/utils.js?v=6.7.0"></script>
+
+  <script src="/js/src/motion.js?v=6.7.0"></script>
+
+
+
+  
+  
+
+
+  <script src="/js/src/affix.js?v=6.7.0"></script>
+
+  <script src="/js/src/schemes/pisces.js?v=6.7.0"></script>
+
+
+
+
+  
+  <script src="/js/src/scrollspy.js?v=6.7.0"></script>
+<script src="/js/src/post-details.js?v=6.7.0"></script>
+
+
+
+  
+
+
+  <script src="/js/src/bootstrap.js?v=6.7.0"></script>
+
+
+
+  
+
+
+  
+
+
+  
+
+  <script>
+    // Popup Window;
+    var isfetched = false;
+    var isXml = true;
+    // Search DB path;
+    var search_path = "search.xml";
+    if (search_path.length === 0) {
+      search_path = "search.xml";
+    } else if (/json$/i.test(search_path)) {
+      isXml = false;
+    }
+    var path = "/" + search_path;
+    // monitor main search box;
+
+    var onPopupClose = function (e) {
+      $('.popup').hide();
+      $('#local-search-input').val('');
+      $('.search-result-list').remove();
+      $('#no-result').remove();
+      $(".local-search-pop-overlay").remove();
+      $('body').css('overflow', '');
+    }
+
+    function proceedsearch() {
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay"></div>')
+        .css('overflow', 'hidden');
+      $('.search-popup-overlay').click(onPopupClose);
+      $('.popup').toggle();
+      var $localSearchInput = $('#local-search-input');
+      $localSearchInput.attr("autocapitalize", "none");
+      $localSearchInput.attr("autocorrect", "off");
+      $localSearchInput.focus();
+    }
+
+    // search function;
+    var searchFunc = function(path, search_id, content_id) {
+      'use strict';
+
+      // start loading animation
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay">' +
+          '<div id="search-loading-icon">' +
+          '<i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i>' +
+          '</div>' +
+          '</div>')
+        .css('overflow', 'hidden');
+      $("#search-loading-icon").css('margin', '20% auto 0 auto').css('text-align', 'center');
+
+      
+
+      $.ajax({
+        url: path,
+        dataType: isXml ? "xml" : "json",
+        async: true,
+        success: function(res) {
+          // get the contents from search data
+          isfetched = true;
+          $('.popup').detach().appendTo('.header-inner');
+          var datas = isXml ? $("entry", res).map(function() {
+            return {
+              title: $("title", this).text(),
+              content: $("content",this).text(),
+              url: $("url" , this).text()
+            };
+          }).get() : res;
+          var input = document.getElementById(search_id);
+          var resultContent = document.getElementById(content_id);
+          var inputEventFunction = function() {
+            var searchText = input.value.trim().toLowerCase();
+            var keywords = searchText.split(/[\s\-]+/);
+            if (keywords.length > 1) {
+              keywords.push(searchText);
+            }
+            var resultItems = [];
+            if (searchText.length > 0) {
+              // perform local searching
+              datas.forEach(function(data) {
+                var isMatch = false;
+                var hitCount = 0;
+                var searchTextCount = 0;
+                var title = data.title.trim();
+                var titleInLowerCase = title.toLowerCase();
+                var content = data.content.trim().replace(/<[^>]+>/g,"");
+                
+                var contentInLowerCase = content.toLowerCase();
+                var articleUrl = decodeURIComponent(data.url).replace(/\/{2,}/g, '/');
+                var indexOfTitle = [];
+                var indexOfContent = [];
+                // only match articles with not empty titles
+                if(title != '') {
+                  keywords.forEach(function(keyword) {
+                    function getIndexByWord(word, text, caseSensitive) {
+                      var wordLen = word.length;
+                      if (wordLen === 0) {
+                        return [];
+                      }
+                      var startPosition = 0, position = [], index = [];
+                      if (!caseSensitive) {
+                        text = text.toLowerCase();
+                        word = word.toLowerCase();
+                      }
+                      while ((position = text.indexOf(word, startPosition)) > -1) {
+                        index.push({position: position, word: word});
+                        startPosition = position + wordLen;
+                      }
+                      return index;
+                    }
+
+                    indexOfTitle = indexOfTitle.concat(getIndexByWord(keyword, titleInLowerCase, false));
+                    indexOfContent = indexOfContent.concat(getIndexByWord(keyword, contentInLowerCase, false));
+                  });
+                  if (indexOfTitle.length > 0 || indexOfContent.length > 0) {
+                    isMatch = true;
+                    hitCount = indexOfTitle.length + indexOfContent.length;
+                  }
+                }
+
+                // show search results
+
+                if (isMatch) {
+                  // sort index by position of keyword
+
+                  [indexOfTitle, indexOfContent].forEach(function (index) {
+                    index.sort(function (itemLeft, itemRight) {
+                      if (itemRight.position !== itemLeft.position) {
+                        return itemRight.position - itemLeft.position;
+                      } else {
+                        return itemLeft.word.length - itemRight.word.length;
+                      }
+                    });
+                  });
+
+                  // merge hits into slices
+
+                  function mergeIntoSlice(text, start, end, index) {
+                    var item = index[index.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    var hits = [];
+                    var searchTextCountInSlice = 0;
+                    while (position + word.length <= end && index.length != 0) {
+                      if (word === searchText) {
+                        searchTextCountInSlice++;
+                      }
+                      hits.push({position: position, length: word.length});
+                      var wordEnd = position + word.length;
+
+                      // move to next position of hit
+
+                      index.pop();
+                      while (index.length != 0) {
+                        item = index[index.length - 1];
+                        position = item.position;
+                        word = item.word;
+                        if (wordEnd > position) {
+                          index.pop();
+                        } else {
+                          break;
+                        }
+                      }
+                    }
+                    searchTextCount += searchTextCountInSlice;
+                    return {
+                      hits: hits,
+                      start: start,
+                      end: end,
+                      searchTextCount: searchTextCountInSlice
+                    };
+                  }
+
+                  var slicesOfTitle = [];
+                  if (indexOfTitle.length != 0) {
+                    slicesOfTitle.push(mergeIntoSlice(title, 0, title.length, indexOfTitle));
+                  }
+
+                  var slicesOfContent = [];
+                  while (indexOfContent.length != 0) {
+                    var item = indexOfContent[indexOfContent.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    // cut out 100 characters
+                    var start = position - 20;
+                    var end = position + 80;
+                    if(start < 0){
+                      start = 0;
+                    }
+                    if (end < position + word.length) {
+                      end = position + word.length;
+                    }
+                    if(end > content.length){
+                      end = content.length;
+                    }
+                    slicesOfContent.push(mergeIntoSlice(content, start, end, indexOfContent));
+                  }
+
+                  // sort slices in content by search text's count and hits' count
+
+                  slicesOfContent.sort(function (sliceLeft, sliceRight) {
+                    if (sliceLeft.searchTextCount !== sliceRight.searchTextCount) {
+                      return sliceRight.searchTextCount - sliceLeft.searchTextCount;
+                    } else if (sliceLeft.hits.length !== sliceRight.hits.length) {
+                      return sliceRight.hits.length - sliceLeft.hits.length;
+                    } else {
+                      return sliceLeft.start - sliceRight.start;
+                    }
+                  });
+
+                  // select top N slices in content
+
+                  var upperBound = parseInt('1');
+                  if (upperBound >= 0) {
+                    slicesOfContent = slicesOfContent.slice(0, upperBound);
+                  }
+
+                  // highlight title and content
+
+                  function highlightKeyword(text, slice) {
+                    var result = '';
+                    var prevEnd = slice.start;
+                    slice.hits.forEach(function (hit) {
+                      result += text.substring(prevEnd, hit.position);
+                      var end = hit.position + hit.length;
+                      result += '<b class="search-keyword">' + text.substring(hit.position, end) + '</b>';
+                      prevEnd = end;
+                    });
+                    result += text.substring(prevEnd, slice.end);
+                    return result;
+                  }
+
+                  var resultItem = '';
+
+                  if (slicesOfTitle.length != 0) {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + highlightKeyword(title, slicesOfTitle[0]) + "</a>";
+                  } else {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + title + "</a>";
+                  }
+
+                  slicesOfContent.forEach(function (slice) {
+                    resultItem += "<a href='" + articleUrl + "'>" +
+                      "<p class=\"search-result\">" + highlightKeyword(content, slice) +
+                      "...</p>" + "</a>";
+                  });
+
+                  resultItem += "</li>";
+                  resultItems.push({
+                    item: resultItem,
+                    searchTextCount: searchTextCount,
+                    hitCount: hitCount,
+                    id: resultItems.length
+                  });
+                }
+              })
+            };
+            if (keywords.length === 1 && keywords[0] === "") {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-search fa-5x"></i></div>'
+            } else if (resultItems.length === 0) {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-frown-o fa-5x"></i></div>'
+            } else {
+              resultItems.sort(function (resultLeft, resultRight) {
+                if (resultLeft.searchTextCount !== resultRight.searchTextCount) {
+                  return resultRight.searchTextCount - resultLeft.searchTextCount;
+                } else if (resultLeft.hitCount !== resultRight.hitCount) {
+                  return resultRight.hitCount - resultLeft.hitCount;
+                } else {
+                  return resultRight.id - resultLeft.id;
+                }
+              });
+              var searchResultList = '<ul class=\"search-result-list\">';
+              resultItems.forEach(function (result) {
+                searchResultList += result.item;
+              })
+              searchResultList += "</ul>";
+              resultContent.innerHTML = searchResultList;
+            }
+          }
+
+          if ('auto' === 'auto') {
+            input.addEventListener('input', inputEventFunction);
+          } else {
+            $('.search-icon').click(inputEventFunction);
+            input.addEventListener('keypress', function (event) {
+              if (event.keyCode === 13) {
+                inputEventFunction();
+              }
+            });
+          }
+
+          // remove loading animation
+          $(".local-search-pop-overlay").remove();
+          $('body').css('overflow', '');
+
+          proceedsearch();
+        }
+      });
+    }
+
+    // handle and trigger popup window;
+    $('.popup-trigger').click(function(e) {
+      e.stopPropagation();
+      if (isfetched === false) {
+        searchFunc(path, 'local-search-input', 'local-search-result');
+      } else {
+        proceedsearch();
+      };
+    });
+
+    $('.popup-btn-close').click(onPopupClose);
+    $('.popup').click(function(e){
+      e.stopPropagation();
+    });
+    $(document).on('keyup', function (event) {
+      var shouldDismissSearchPopup = event.which === 27 &&
+        $('.search-popup').is(':visible');
+      if (shouldDismissSearchPopup) {
+        onPopupClose();
+      }
+    });
+  </script>
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>
