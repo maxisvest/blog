@@ -572,6 +572,10 @@ yum install lxcfs-2.0.5-3.el7.centos.x86_64.rpm</code></p>
           
 
   
+    <div class="comments" id="gitalk-container">
+    </div>
+
+  
 
 
 
@@ -967,6 +971,32 @@ yum install lxcfs-2.0.5-3.el7.centos.x86_64.rpm</code></p>
 
   
 
+
+  
+    
+
+<script src="//cdn.jsdelivr.net/npm/gitalk@1/dist/gitalk.min.js"></script>
+
+
+
+<link rel="stylesheet" href="//cdn.jsdelivr.net/npm/gitalk@1/dist/gitalk.min.css">
+
+
+
+<script src="//cdn.jsdelivr.net/npm/js-md5@0.7.3/src/md5.min.js"></script>
+
+<script>
+  var gitalk = new Gitalk({
+    clientID: 'd2c0e0bda433570969fa',
+    clientSecret: '40a068e172ff05b2f8110ca5761cc8a012637f62',
+    repo: 'blog-gitment-comment',
+    owner: 'maxisvest',
+    admin: ['maxisvest'],
+    id: md5(location.pathname),
+    distractionFreeMode: 'true'
+  });
+  gitalk.render('gitalk-container');
+</script>
 
   
 
