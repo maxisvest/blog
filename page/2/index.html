@@ -390,6 +390,175 @@
   
   
   <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://blog.maxisvest.com/一种简单的mysql数据压缩方案/">
+
+    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="小于同学">
+      <meta itemprop="description" content="技术 生活 原创">
+      <meta itemprop="image" content="/images/avatarPicture/IMG_3667.JPG">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Maxisvest的博客">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h2 class="post-title" itemprop="name headline">
+                
+                
+                <a href="/一种简单的mysql数据压缩方案/" class="post-title-link" itemprop="url">一种简单的mysql数据压缩方案</a>
+              
+            
+          </h2>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+
+            
+            
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+
+              
+                
+              
+
+              <time title="创建时间：2019-09-02 18:36:25" itemprop="dateCreated datePublished" datetime="2019-09-02T18:36:25+00:00">2019-09-02</time>
+            
+
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing"><a href="/categories/数据库/" itemprop="url" rel="index"><span itemprop="name">数据库</span></a></span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+            
+          
+
+          
+          
+
+          
+            <span style="display:none">
+              阅读次数: <span class="busuanzi-value" id="busuanzi_value_page_pv"></span>
+            </span>
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          <h3 id="方案"><a href="#方案" class="headerlink" title="方案"></a>方案</h3><p>业务中某张表存储的数据量较大，导致磁盘飞速增长<br>于是需要找到一种方案来减小线上数据库的占用量</p>
+<p>业务使用的数据库为mysql数据库，InnoDB引擎<br>故可以考虑使用InnoDB引擎自带的压缩方案</p>
+<h3 id="教程"><a href="#教程" class="headerlink" title="教程"></a>教程</h3><p>1.查询表原来所占的空间<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">select concat(round(sum(data_length/1024/1024),2),&apos;MB&apos;) as data </span><br><span class="line">from information_schema.tables </span><br><span class="line">where table_schema=&apos;数据库名&apos; AND table_name = &apos;表名&apos;;</span><br></pre></td></tr></table></figure></p>
+          <!--noindex-->
+          
+            <div class="post-button text-center">
+              <a class="btn" href="/一种简单的mysql数据压缩方案/#more" rel="contents">
+                阅读全文 &raquo;
+              </a>
+            </div>
+          
+          <!--/noindex-->
+        
+      
+    </div>
+
+    
+
+    
+    
+    
+
+    
+
+    
+      
+    
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
     <link itemprop="mainEntityOfPage" href="https://blog.maxisvest.com/开源线性规划器optaplanner/">
 
     <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
@@ -1905,169 +2074,6 @@ yum install lxcfs-2.0.5-3.el7.centos.x86_64.rpm</code></p>
 
 
     
-      
-
-  
-
-  
-  
-  
-
-  
-
-  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://blog.maxisvest.com/oracle遇到的坑/">
-
-    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="小于同学">
-      <meta itemprop="description" content="技术 生活 原创">
-      <meta itemprop="image" content="/images/avatarPicture/IMG_3667.JPG">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Maxisvest的博客">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h2 class="post-title" itemprop="name headline">
-                
-                
-                <a href="/oracle遇到的坑/" class="post-title-link" itemprop="url">oracle遇到的坑</a>
-              
-            
-          </h2>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-
-            
-            
-            
-
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-
-              
-                
-              
-
-              <time title="创建时间：2018-10-06 20:56:34" itemprop="dateCreated datePublished" datetime="2018-10-06T20:56:34+00:00">2018-10-06</time>
-            
-
-            
-          </span>
-
-          
-            <span class="post-category">
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing"><a href="/categories/java/" itemprop="url" rel="index"><span itemprop="name">java</span></a></span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-            
-          
-
-          
-          
-
-          
-            <span style="display:none">
-              阅读次数: <span class="busuanzi-value" id="busuanzi_value_page_pv"></span>
-            </span>
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <p>1.jpa如果打开<code>spring.jpa.hibernate.ddl-auto=update</code>的话，会把给定长度比较长的字段更新为LONG类型，但是LONG类型在oracle中，一张表只能存在一个列<br>解决办法就是手动把列类型修改成CLOB，或者使用flyway</p>
-<p>2.jpa在做update的时候，如果报错<br><code>ORA-22295: 不能把超过 4000 字节数据绑定到语句 1 中的 LOB 和 LONG</code><br>就是说不能同时update一张表中的LONG类型和BLOB/CLOB类型<br>解决办法是同一条sql，或者jpa的save中，只update一个LONG字段，或者多个BLOB/CLOB字段</p>
-<p>3.如果报错<br><code>ORA-01502: 索引 &#39;TEST0709.SYS_C0011897&#39; 或这类索引的分区处于不可用状态</code><br>解决办法是使用查询<br><code>select * from  user_indexes where status &lt;&gt; &#39;VALID&#39;;</code><br>查询到所有失效的索引，然后通过下面语句（替换要重建的索引名）来重建索引<br><code>alter index index_name rebuild;</code></p>
-
-          
-        
-      
-    </div>
-
-    
-
-    
-    
-    
-
-    
-
-    
-      
-    
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
   </section>
 
   
@@ -2117,7 +2123,7 @@ yum install lxcfs-2.0.5-3.el7.centos.x86_64.rpm</code></p>
                 
                   <a href="/archives/">
                 
-                    <span class="site-state-item-count">47</span>
+                    <span class="site-state-item-count">48</span>
                     <span class="site-state-item-name">日志</span>
                   </a>
                 </div>
@@ -2156,7 +2162,9 @@ yum install lxcfs-2.0.5-3.el7.centos.x86_64.rpm</code></p>
                     
                       
                     
-                    <span class="site-state-item-count">13</span>
+                      
+                    
+                    <span class="site-state-item-count">14</span>
                     <span class="site-state-item-name">分类</span>
                   </a>
                 </div>
@@ -2235,7 +2243,9 @@ yum install lxcfs-2.0.5-3.el7.centos.x86_64.rpm</code></p>
                     
                       
                     
-                    <span class="site-state-item-count">33</span>
+                      
+                    
+                    <span class="site-state-item-count">34</span>
                     <span class="site-state-item-name">标签</span>
                   </a>
                 </div>

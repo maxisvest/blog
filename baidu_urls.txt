@@ -1,3 +1,4 @@
+https://blog.maxisvest.com/测试/
 https://blog.maxisvest.com/我们公司为什么从Mysql切换成TibDB/
 https://blog.maxisvest.com/一种可以整合spring-IoC机制的可插拔部署的技术思路/
 https://blog.maxisvest.com/全链路日志追踪方案及核心代码分析/
@@ -17,4 +18,3 @@ https://blog.maxisvest.com/一些相对实用的IDEA插件/
 https://blog.maxisvest.com/docker-指南/
 https://blog.maxisvest.com/windows-jeankins-搭建/
 https://blog.maxisvest.com/java代理模式/
-https://blog.maxisvest.com/oracle遇到的坑/
