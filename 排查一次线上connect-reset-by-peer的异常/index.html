@@ -130,7 +130,7 @@
 <meta property="og:locale" content="zh-CN">
 <meta property="og:image" content="https://blog.maxisvest.com/排查一次线上connect-reset-by-peer的异常/aaa.png">
 <meta property="og:image" content="https://blog.maxisvest.com/排查一次线上connect-reset-by-peer的异常/bbb.png">
-<meta property="og:updated_time" content="2021-11-19T08:46:58.000Z">
+<meta property="og:updated_time" content="2022-05-10T09:23:18.355Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="排查一次线上connect reset by peer的异常">
 <meta name="twitter:description" content="公司业务系统中有一个功能是某个系统客户端要定时加载目标jar包到系统中实现功能的热扩展，线上出了一个很奇怪的异常，是jar包提供端出现了connect reset by peer，隔一段时间就会报异常并且业务功能并没有受到影响，但是毕竟是生产环境，一点错误都有可能造成损失，问题还是要看的啊  首先定位问题，该异常由jar包提供端抛出，jar删除后便不再抛出，由此基本可以缩小范围至客户端加载jar包">
@@ -436,7 +436,7 @@
                 
               
 
-              <time title="创建时间：2020-03-29 09:38:13" itemprop="dateCreated datePublished" datetime="2020-03-29T09:38:13+08:00">2020-03-29</time>
+              <time title="创建时间：2020-03-29 09:38:13" itemprop="dateCreated datePublished" datetime="2020-03-29T09:38:13+00:00">2020-03-29</time>
             
 
             
@@ -979,7 +979,7 @@
   var gitalk = new Gitalk({
     clientID: 'd2c0e0bda433570969fa',
     clientSecret: '40a068e172ff05b2f8110ca5761cc8a012637f62',
-    repo: 'blog-gitment-comment',
+    repo: 'blog',
     owner: 'maxisvest',
     admin: ['maxisvest'],
     id: md5(location.pathname),

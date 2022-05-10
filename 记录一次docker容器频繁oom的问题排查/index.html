@@ -132,7 +132,7 @@
 <meta property="og:image" content="https://blog.maxisvest.com/记录一次docker容器频繁oom的问题排查/b.png">
 <meta property="og:image" content="https://blog.maxisvest.com/记录一次docker容器频繁oom的问题排查/c.png">
 <meta property="og:image" content="https://blog.maxisvest.com/记录一次docker容器频繁oom的问题排查/d.png">
-<meta property="og:updated_time" content="2022-04-27T07:14:17.945Z">
+<meta property="og:updated_time" content="2022-05-10T09:23:18.359Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="记录一次docker容器频繁oom的问题排查">
 <meta name="twitter:description" content="业务系统在docker内内存持续增大，导致频繁被系统kill使用 cat /var/log/message 查看kernal日志得到是因为oom被系统kill  使用docker stats 查看容器运行状况  docker run 命令如下(使用了lxcfs，事实证明最后的解决方案并不需要用到lxcfs)1docker run -m 2800M --memory-swap 3500M --mem">
@@ -438,7 +438,7 @@
                 
               
 
-              <time title="创建时间：2019-07-27 23:18:33" itemprop="dateCreated datePublished" datetime="2019-07-27T23:18:33+08:00">2019-07-27</time>
+              <time title="创建时间：2019-07-27 23:18:33" itemprop="dateCreated datePublished" datetime="2019-07-27T23:18:33+00:00">2019-07-27</time>
             
 
             
@@ -975,7 +975,7 @@
   var gitalk = new Gitalk({
     clientID: 'd2c0e0bda433570969fa',
     clientSecret: '40a068e172ff05b2f8110ca5761cc8a012637f62',
-    repo: 'blog-gitment-comment',
+    repo: 'blog',
     owner: 'maxisvest',
     admin: ['maxisvest'],
     id: md5(location.pathname),

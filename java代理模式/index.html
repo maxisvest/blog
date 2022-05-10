@@ -129,7 +129,7 @@
 <meta property="og:description" content="代理代理模式就是使用代理技术动态生成一个类 两种代理方式有两种代理实现，一种是jdk自带的动态代理，另一种是cglib实现的代理 jdk实现的过程是拿到需要实现的接口（可以使多个接口）以及具体的InvocationHandler，然后使用字节码拼成一个全新的类，这个类的内部有接口的所有方法，每个方法的实现相同，都是调用InvocationHandler，jdk的动态代理只能代理接口，不能代理普通类">
 <meta property="og:locale" content="zh-CN">
 <meta property="og:image" content="https://blog.maxisvest.com/java代理模式/a.png">
-<meta property="og:updated_time" content="2021-11-19T08:46:57.000Z">
+<meta property="og:updated_time" content="2022-05-10T09:23:18.307Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="java代理模式">
 <meta name="twitter:description" content="代理代理模式就是使用代理技术动态生成一个类 两种代理方式有两种代理实现，一种是jdk自带的动态代理，另一种是cglib实现的代理 jdk实现的过程是拿到需要实现的接口（可以使多个接口）以及具体的InvocationHandler，然后使用字节码拼成一个全新的类，这个类的内部有接口的所有方法，每个方法的实现相同，都是调用InvocationHandler，jdk的动态代理只能代理接口，不能代理普通类">
@@ -435,7 +435,7 @@
                 
               
 
-              <time title="创建时间：2018-10-21 15:14:01" itemprop="dateCreated datePublished" datetime="2018-10-21T15:14:01+08:00">2018-10-21</time>
+              <time title="创建时间：2018-10-21 15:14:01" itemprop="dateCreated datePublished" datetime="2018-10-21T15:14:01+00:00">2018-10-21</time>
             
 
             
@@ -991,7 +991,7 @@
   var gitalk = new Gitalk({
     clientID: 'd2c0e0bda433570969fa',
     clientSecret: '40a068e172ff05b2f8110ca5761cc8a012637f62',
-    repo: 'blog-gitment-comment',
+    repo: 'blog',
     owner: 'maxisvest',
     admin: ['maxisvest'],
     id: md5(location.pathname),
