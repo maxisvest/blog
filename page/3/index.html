@@ -390,169 +390,6 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://blog.maxisvest.com/oracle遇到的坑/">
-
-    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="小于同学">
-      <meta itemprop="description" content="技术 生活 原创">
-      <meta itemprop="image" content="/images/avatarPicture/IMG_3667.JPG">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Maxisvest的博客">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h2 class="post-title" itemprop="name headline">
-                
-                
-                <a href="/oracle遇到的坑/" class="post-title-link" itemprop="url">oracle遇到的坑</a>
-              
-            
-          </h2>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-
-            
-            
-            
-
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-
-              
-                
-              
-
-              <time title="创建时间：2018-10-06 20:56:34" itemprop="dateCreated datePublished" datetime="2018-10-06T20:56:34+00:00">2018-10-06</time>
-            
-
-            
-          </span>
-
-          
-            <span class="post-category">
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing"><a href="/categories/java/" itemprop="url" rel="index"><span itemprop="name">java</span></a></span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-            
-          
-
-          
-          
-
-          
-            <span style="display:none">
-              阅读次数: <span class="busuanzi-value" id="busuanzi_value_page_pv"></span>
-            </span>
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <p>1.jpa如果打开<code>spring.jpa.hibernate.ddl-auto=update</code>的话，会把给定长度比较长的字段更新为LONG类型，但是LONG类型在oracle中，一张表只能存在一个列<br>解决办法就是手动把列类型修改成CLOB，或者使用flyway</p>
-<p>2.jpa在做update的时候，如果报错<br><code>ORA-22295: 不能把超过 4000 字节数据绑定到语句 1 中的 LOB 和 LONG</code><br>就是说不能同时update一张表中的LONG类型和BLOB/CLOB类型<br>解决办法是同一条sql，或者jpa的save中，只update一个LONG字段，或者多个BLOB/CLOB字段</p>
-<p>3.如果报错<br><code>ORA-01502: 索引 &#39;TEST0709.SYS_C0011897&#39; 或这类索引的分区处于不可用状态</code><br>解决办法是使用查询<br><code>select * from  user_indexes where status &lt;&gt; &#39;VALID&#39;;</code><br>查询到所有失效的索引，然后通过下面语句（替换要重建的索引名）来重建索引<br><code>alter index index_name rebuild;</code></p>
-
-          
-        
-      
-    </div>
-
-    
-
-    
-    
-    
-
-    
-
-    
-      
-    
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  
-
-  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
     <link itemprop="mainEntityOfPage" href="https://blog.maxisvest.com/三种启发式算法的意义/">
 
     <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
@@ -2039,6 +1876,173 @@
 
 
     
+      
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://blog.maxisvest.com/windows部分cmd命令/">
+
+    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="小于同学">
+      <meta itemprop="description" content="技术 生活 原创">
+      <meta itemprop="image" content="/images/avatarPicture/IMG_3667.JPG">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Maxisvest的博客">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h2 class="post-title" itemprop="name headline">
+                
+                
+                <a href="/windows部分cmd命令/" class="post-title-link" itemprop="url">windows部分cmd命令(shell脚本)</a>
+              
+            
+          </h2>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+
+            
+            
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+
+              
+                
+              
+
+              <time title="创建时间：2017-12-19 16:08:17" itemprop="dateCreated datePublished" datetime="2017-12-19T16:08:17+00:00">2017-12-19</time>
+            
+
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing"><a href="/categories/windows/" itemprop="url" rel="index"><span itemprop="name">windows</span></a></span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+            
+          
+
+          
+          
+
+          
+            <span style="display:none">
+              阅读次数: <span class="busuanzi-value" id="busuanzi_value_page_pv"></span>
+            </span>
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <p>cmd命令/bat</p>
+<p><code>set title=tomcat</code><br>使用<code>set</code>来定义变量，使用<code>%tile%</code>来读取变量，例如<code>echo %title%</code><br><code>call</code>命令可以在一个bat中调用另一个bat，并且子bat的结束并不会导致调用它的bat结束<br><code>start cmd</code> 可以以一个新的窗口启动命令，<code>start cmd /c</code> 为在新窗口执行完后关闭，<code>start cmd /k</code> 相反，<code>start cmd</code>后如果需要指定多条命令，可以使用<code>&amp;&amp;</code>将多条命令连接<br><code>echo.</code>为显示回车</p>
+<p><code>if exist c:\temp\a.txt( echo &quot;exist&quot; ) else ( &quot;echo not exsit&quot; )</code></p>
+<p>这样写if语句，可以使用<code>exsit</code>或者<code>not exist</code></p>
+<p><code>taskkill /F</code> 是强制，<code>/FI</code> 是搜索, <code>/T</code>是结束该进程和相关的子进程，例如<br><code>taskkill /F /T /FI &quot;WINDOWTITLE eq tomcat&quot;</code></p>
+<p>在脚本后增加<code>pause</code>命令，可以使脚本运行窗口停留在<code>pause</code>的位置，方便观察报错信息</p>
+<p><code>netstat -ano | findstr 端口号</code>可以找见端口号对应的记录，记录的最后一行为pid<br><code>netstat -ano | findstr 8011</code></p>
+
+          
+        
+      
+    </div>
+
+    
+
+    
+    
+    
+
+    
+
+    
+      
+    
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
   </section>
 
   
@@ -2088,7 +2092,7 @@
                 
                   <a href="/archives/">
                 
-                    <span class="site-state-item-count">48</span>
+                    <span class="site-state-item-count">47</span>
                     <span class="site-state-item-name">日志</span>
                   </a>
                 </div>
@@ -2127,9 +2131,7 @@
                     
                       
                     
-                      
-                    
-                    <span class="site-state-item-count">14</span>
+                    <span class="site-state-item-count">13</span>
                     <span class="site-state-item-name">分类</span>
                   </a>
                 </div>
@@ -2208,9 +2210,7 @@
                     
                       
                     
-                      
-                    
-                    <span class="site-state-item-count">34</span>
+                    <span class="site-state-item-count">33</span>
                     <span class="site-state-item-name">标签</span>
                   </a>
                 </div>
