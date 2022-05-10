@@ -130,7 +130,7 @@
 <meta property="og:locale" content="zh-CN">
 <meta property="og:image" content="https://blog.maxisvest.com/hotspot版本虚拟机垃圾回收机制/a.png">
 <meta property="og:image" content="https://blog.maxisvest.com/hotspot版本虚拟机垃圾回收机制/b.png">
-<meta property="og:updated_time" content="2022-05-10T09:23:18.303Z">
+<meta property="og:updated_time" content="2022-05-10T09:30:09.502Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="java hotspot版本虚拟机垃圾回收机制">
 <meta name="twitter:description" content="首先，堆中的内存分为三个大块(java8是两个，持久代被干掉了)，新生代和老年代，持久代，新生代为各种new出来的对象所在场所，老年代存放的是在多次GC都活下来的对象，持久代（也被称作方法区，存放各种静态文件，包括类，方法等）不会发生minor GC，当持久代满时，会触发full GC java8中，持久代被替换成metaspcace，metaspace不会占用虚拟机内存，占用的是本地内存 (1.">
