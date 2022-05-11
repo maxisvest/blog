@@ -120,24 +120,25 @@
 
 
 
-  <meta name="description" content="技术 生活 原创">
-<meta name="keywords" content="maxisvest,市民于先生,小于同学">
+  <meta name="description" content="读文件123456FileInputStream fileInputStream = new FileInputStream(&amp;quot;C:\\Users\\admini\\Desktop\\h5(7).html&amp;quot;);BufferedInputStream bufferedInputStream = new BufferedInputStream(fileInputStream);by">
+<meta name="keywords" content="java,IO">
 <meta property="og:type" content="website">
-<meta property="og:title" content="Maxisvest的博客">
-<meta property="og:url" content="https://blog.maxisvest.com/archives/page/5/index.html">
+<meta property="og:title" content="java IO 简略样例">
+<meta property="og:url" content="https://blog.maxisvest.com/archived/简略样例.html">
 <meta property="og:site_name" content="Maxisvest的博客">
-<meta property="og:description" content="技术 生活 原创">
+<meta property="og:description" content="读文件123456FileInputStream fileInputStream = new FileInputStream(&amp;quot;C:\\Users\\admini\\Desktop\\h5(7).html&amp;quot;);BufferedInputStream bufferedInputStream = new BufferedInputStream(fileInputStream);by">
 <meta property="og:locale" content="zh-CN">
+<meta property="og:updated_time" content="2022-05-11T07:10:30.391Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Maxisvest的博客">
-<meta name="twitter:description" content="技术 生活 原创">
+<meta name="twitter:title" content="java IO 简略样例">
+<meta name="twitter:description" content="读文件123456FileInputStream fileInputStream = new FileInputStream(&amp;quot;C:\\Users\\admini\\Desktop\\h5(7).html&amp;quot;);BufferedInputStream bufferedInputStream = new BufferedInputStream(fileInputStream);by">
 
 
 
 
 
 
-  <link rel="canonical" href="https://blog.maxisvest.com/archives/page/5/">
+  <link rel="canonical" href="https://blog.maxisvest.com/archived/简略样例.html">
 
 
 
@@ -147,7 +148,7 @@
   };
 </script>
 
-  <title>归档 | Maxisvest的博客</title>
+  <title>java IO 简略样例 | Maxisvest的博客</title>
   
 
 
@@ -205,7 +206,7 @@
     
   
 
-  <div class="container sidebar-position-right page-archive">
+  <div class="container sidebar-position-right page-post-detail">
     <div class="headband"></div>
 
     <header id="header" class="header" itemscope="" itemtype="http://schema.org/WPHeader">
@@ -298,7 +299,7 @@
         
         
           
-          <li class="menu-item menu-item-archives menu-item-active">
+          <li class="menu-item menu-item-archives">
 
     
     
@@ -392,367 +393,65 @@
           <div id="content" class="content">
             
 
+  <div id="posts" class="posts-expand">
+    
+    
+    
+    <div class="post-block page">
+      <header class="post-header">
+
+<h2 class="post-title" itemprop="name headline">java IO 简略样例
+
+</h2>
+
+<div class="post-meta">
   
   
-  
-  <div class="post-block archive">
-    <div id="posts" class="posts-collapse">
-      <span class="archive-move-on"></span>
+
+
+
+</div>
+
+</header>
 
       
-      <span class="archive-page-counter">
-        
-        
-         
-        
-        
-        目前共计 49 篇日志。
-      </span>
       
-
       
+      <div class="post-body">
+        
+        
+          <h3 id="读文件"><a href="#读文件" class="headerlink" title="读文件"></a>读文件</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">FileInputStream fileInputStream = new FileInputStream(&quot;C:\\Users\\admini\\Desktop\\h5(7).html&quot;);</span><br><span class="line">BufferedInputStream bufferedInputStream = new BufferedInputStream(fileInputStream);</span><br><span class="line"></span><br><span class="line">byte[] data = new byte[bufferedInputStream.available()];    //获得流的长度</span><br><span class="line">bufferedInputStream.read(data);</span><br><span class="line">String template = new String(data);</span><br></pre></td></tr></table></figure>
+<p>需要注意的是，可以不需要BufferedInputStream 直接使用FileInputStream来读取，BufferedInputStream 继承了FileInputStream，BufferedInputStream 效率更高</p>
+<h3 id="写文件"><a href="#写文件" class="headerlink" title="写文件"></a>写文件</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">FileOutputStream fileOutputStream = new FileOutputStream(&quot;C:\\Users\\admini\\Desktop\\123.txt&quot;);</span><br><span class="line">BufferedOutputStream bufferedOutputStream = new BufferedOutputStream(fileOutputStream);</span><br><span class="line">bufferedOutputStream.write(&quot;asdasdasd&quot;.getBytes());</span><br><span class="line">bufferedOutputStream.flush();</span><br><span class="line">bufferedInputStream.close();</span><br></pre></td></tr></table></figure>
+<p>需要注意的是，可以不需要BufferedOutputStream 直接使用FileOutputStream 来写入<br>但是，FileOutputStream 每一次写都是一次io，效率低，BufferedOutputStream 的write()会现将数据缓存，然后写入，然后再缓存再写入，减少io<br>非常重要的一点是，触发写入的时间是缓冲区填满的时候，当流的最后一段没有将缓冲区填满，那么就不会触发写入，导致数据丢失<br>这时需要使用flush()方法强制将将缓冲区数据写入，并且清空缓冲区，调用close()方法也可以实现这个功能，因为close()方法中调用flush()方法</p>
+<p>ref <a href="https://www.imooc.com/article/10791" target="_blank" rel="noopener">https://www.imooc.com/article/10791</a></p>
 
         
-        
-        
-
-        
-          
-          <div class="collection-title">
-            <h2 class="archive-year" id="archive-year-2017">2017</h2>
-          </div>
-        
-        
-
-        
-
-  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      <h3 class="post-title">
-        
-          <a class="post-title-link" href="/关于集群与分布式及正向代理与反向代理的初步总结/" itemprop="url">
-            
-              <span itemprop="name">关于集群与分布式及正向代理与反向代理的初步总结</span>
-            
-          </a>
-        
-      </h3>
-
-      <div class="post-meta">
-        <time class="post-time" itemprop="dateCreated" datetime="2017-04-18T17:26:56+00:00" content="2017-04-18">
-          04-18
-        </time>
       </div>
-
-    </header>
-  </article>
-
-
-
       
-
-        
-        
-        
-
-        
-        
-
-        
-
-  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      <h3 class="post-title">
-        
-          <a class="post-title-link" href="/RestTemplate使用小结/" itemprop="url">
-            
-              <span itemprop="name">RestTemplate使用小结</span>
-            
-          </a>
-        
-      </h3>
-
-      <div class="post-meta">
-        <time class="post-time" itemprop="dateCreated" datetime="2017-03-16T17:37:03+00:00" content="2017-03-16">
-          03-16
-        </time>
-      </div>
-
-    </header>
-  </article>
-
-
-
       
-
-        
-        
-        
-
-        
-        
-
-        
-
-  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      <h3 class="post-title">
-        
-          <a class="post-title-link" href="/使用maven搭建一套web/" itemprop="url">
-            
-              <span itemprop="name">使用maven搭建一套web</span>
-            
-          </a>
-        
-      </h3>
-
-      <div class="post-meta">
-        <time class="post-time" itemprop="dateCreated" datetime="2017-03-16T17:32:28+00:00" content="2017-03-16">
-          03-16
-        </time>
-      </div>
-
-    </header>
-  </article>
-
-
-
       
-
-        
-        
-        
-
-        
-        
-
-        
-
-  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      <h3 class="post-title">
-        
-          <a class="post-title-link" href="/初步记录编写sql的分析流程/" itemprop="url">
-            
-              <span itemprop="name">初步记录编写sql的分析流程</span>
-            
-          </a>
-        
-      </h3>
-
-      <div class="post-meta">
-        <time class="post-time" itemprop="dateCreated" datetime="2017-02-04T17:23:16+00:00" content="2017-02-04">
-          02-04
-        </time>
-      </div>
-
-    </header>
-  </article>
-
-
-
-      
-
-        
-        
-        
-
-        
-        
-
-        
-
-  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      <h3 class="post-title">
-        
-          <a class="post-title-link" href="/分析系一个问题的流程/" itemprop="url">
-            
-              <span itemprop="name">分析系一个问题的流程</span>
-            
-          </a>
-        
-      </h3>
-
-      <div class="post-meta">
-        <time class="post-time" itemprop="dateCreated" datetime="2017-02-04T17:20:25+00:00" content="2017-02-04">
-          02-04
-        </time>
-      </div>
-
-    </header>
-  </article>
-
-
-
-      
-
-        
-        
-        
-
-        
-        
-
-        
-
-  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      <h3 class="post-title">
-        
-          <a class="post-title-link" href="/关于url传参乱码的解决/" itemprop="url">
-            
-              <span itemprop="name">关于url传参乱码的解决</span>
-            
-          </a>
-        
-      </h3>
-
-      <div class="post-meta">
-        <time class="post-time" itemprop="dateCreated" datetime="2017-01-23T16:50:48+00:00" content="2017-01-23">
-          01-23
-        </time>
-      </div>
-
-    </header>
-  </article>
-
-
-
-      
-
-        
-        
-        
-
-        
-          
-          <div class="collection-title">
-            <h2 class="archive-year" id="archive-year-2016">2016</h2>
-          </div>
-        
-        
-
-        
-
-  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      <h3 class="post-title">
-        
-          <a class="post-title-link" href="/站点seo优化/" itemprop="url">
-            
-              <span itemprop="name">站点SEO优化</span>
-            
-          </a>
-        
-      </h3>
-
-      <div class="post-meta">
-        <time class="post-time" itemprop="dateCreated" datetime="2016-12-17T18:17:41+00:00" content="2016-12-17">
-          12-17
-        </time>
-      </div>
-
-    </header>
-  </article>
-
-
-
-      
-
-        
-        
-        
-
-        
-        
-
-        
-
-  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      <h3 class="post-title">
-        
-          <a class="post-title-link" href="/hexo常用命令/" itemprop="url">
-            
-              <span itemprop="name">hexo常用命令</span>
-            
-          </a>
-        
-      </h3>
-
-      <div class="post-meta">
-        <time class="post-time" itemprop="dateCreated" datetime="2016-12-16T22:59:17+00:00" content="2016-12-16">
-          12-16
-        </time>
-      </div>
-
-    </header>
-  </article>
-
-
-
-      
-
-        
-        
-        
-
-        
-        
-
-        
-
-  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      <h3 class="post-title">
-        
-          <a class="post-title-link" href="/hexo建站指南/" itemprop="url">
-            
-              <span itemprop="name">hexo建站指南</span>
-            
-          </a>
-        
-      </h3>
-
-      <div class="post-meta">
-        <time class="post-time" itemprop="dateCreated" datetime="2016-12-16T17:02:56+00:00" content="2016-12-16">
-          12-16
-        </time>
-      </div>
-
-    </header>
-  </article>
-
-
-
-      
-
     </div>
+    
+
+
+
+    
+    
+    
   </div>
-  
-  
-  
-
-  
-  <nav class="pagination">
-    <a class="extend prev" rel="prev" href="/archives/page/4/"><i class="fa fa-angle-left" aria-label="上一页"></i></a><a class="page-number" href="/archives/">1</a><span class="space">&hellip;</span><a class="page-number" href="/archives/page/4/">4</a><span class="page-number current">5</span>
-  </nav>
-
-
 
 
           </div>
           
+
+  
+    <div class="comments" id="gitalk-container">
+    </div>
+
+  
+
+
 
         </div>
         
@@ -773,8 +472,17 @@
       
 
       
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
 
-      <div class="site-overview-wrap sidebar-panel sidebar-panel-active">
+      <div class="site-overview-wrap sidebar-panel">
         <div class="site-overview">
           <div class="site-author motion-element" itemprop="author" itemscope="" itemtype="http://schema.org/Person">
             
@@ -791,7 +499,7 @@
                 
                   <a href="/archives/">
                 
-                    <span class="site-state-item-count">49</span>
+                    <span class="site-state-item-count">39</span>
                     <span class="site-state-item-name">日志</span>
                   </a>
                 </div>
@@ -830,9 +538,7 @@
                     
                       
                     
-                      
-                    
-                    <span class="site-state-item-count">14</span>
+                    <span class="site-state-item-count">13</span>
                     <span class="site-state-item-name">分类</span>
                   </a>
                 </div>
@@ -905,15 +611,7 @@
                     
                       
                     
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                    <span class="site-state-item-count">34</span>
+                    <span class="site-state-item-count">30</span>
                     <span class="site-state-item-name">标签</span>
                   </a>
                 </div>
@@ -953,6 +651,23 @@
         </div>
       </div>
 
+      
+      <!--noindex-->
+        <div class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+            
+            
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#读文件"><span class="nav-number">1.</span> <span class="nav-text">读文件</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#写文件"><span class="nav-number">2.</span> <span class="nav-text">写文件</span></a></li></ol></div>
+            
+
+          </div>
+        </div>
+      <!--/noindex-->
       
 
       
@@ -1110,6 +825,10 @@
 
 
   
+  <script src="/js/src/scrollspy.js?v=6.7.0"></script>
+<script src="/js/src/post-details.js?v=6.7.0"></script>
+
+
 
   
 
@@ -1120,6 +839,34 @@
 
   
 
+
+  
+    
+
+<script src="//cdn.jsdelivr.net/npm/gitalk@1/dist/gitalk.min.js"></script>
+
+
+
+<link rel="stylesheet" href="//cdn.jsdelivr.net/npm/gitalk@1/dist/gitalk.min.css">
+
+
+
+<script src="//cdn.jsdelivr.net/npm/js-md5@0.7.3/src/md5.min.js"></script>
+
+<script>
+  var gitalk = new Gitalk({
+    clientID: 'd2c0e0bda433570969fa',
+    clientSecret: '40a068e172ff05b2f8110ca5761cc8a012637f62',
+    repo: 'blog',
+    owner: 'maxisvest',
+    admin: ['maxisvest'],
+    id: md5(location.pathname),
+    distractionFreeMode: 'true'
+  });
+  gitalk.render('gitalk-container');
+</script>
+
+  
 
 
   

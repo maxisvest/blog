@@ -390,1006 +390,6 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://blog.maxisvest.com/java代理模式/">
-
-    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="小于同学">
-      <meta itemprop="description" content="技术 生活 原创">
-      <meta itemprop="image" content="/images/avatarPicture/IMG_3667.JPG">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Maxisvest的博客">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h2 class="post-title" itemprop="name headline">
-                
-                
-                <a href="/java代理模式/" class="post-title-link" itemprop="url">java代理模式</a>
-              
-            
-          </h2>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-
-            
-            
-            
-
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-
-              
-                
-              
-
-              <time title="创建时间：2018-10-21 15:14:01" itemprop="dateCreated datePublished" datetime="2018-10-21T15:14:01+00:00">2018-10-21</time>
-            
-
-            
-          </span>
-
-          
-            <span class="post-category">
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing"><a href="/categories/java/" itemprop="url" rel="index"><span itemprop="name">java</span></a></span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-            
-          
-
-          
-          
-
-          
-            <span style="display:none">
-              阅读次数: <span class="busuanzi-value" id="busuanzi_value_page_pv"></span>
-            </span>
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          <h1 id="代理"><a href="#代理" class="headerlink" title="代理"></a>代理</h1><p>代理模式就是使用代理技术动态生成一个类</p>
-<h1 id="两种代理方式"><a href="#两种代理方式" class="headerlink" title="两种代理方式"></a>两种代理方式</h1><p>有两种代理实现，一种是jdk自带的动态代理，另一种是cglib实现的代理</p>
-<p>jdk实现的过程是拿到需要实现的接口（可以使多个接口）以及具体的InvocationHandler，然后使用字节码拼成一个全新的类，这个类的内部有接口的所有方法，每个方法的实现相同，都是调用InvocationHandler，jdk的动态代理只能代理接口，不能代理普通类</p>
-<p>cglib实现的过程依旧是拿到需要实现的接口（可以使多个接口）或者普通类以及具体的MethodInterceptor ，然后通过字节码拼成一个新的代理类，这个代理类是继承自目标类，然后使用MethodInterceptor复写其中的方法，cglib的代理不仅可以代理接口，还可以代理普通类</p>
-          <!--noindex-->
-          
-            <div class="post-button text-center">
-              <a class="btn" href="/java代理模式/#more" rel="contents">
-                阅读全文 &raquo;
-              </a>
-            </div>
-          
-          <!--/noindex-->
-        
-      
-    </div>
-
-    
-
-    
-    
-    
-
-    
-
-    
-      
-    
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  
-
-  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://blog.maxisvest.com/oracle遇到的坑/">
-
-    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="小于同学">
-      <meta itemprop="description" content="技术 生活 原创">
-      <meta itemprop="image" content="/images/avatarPicture/IMG_3667.JPG">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Maxisvest的博客">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h2 class="post-title" itemprop="name headline">
-                
-                
-                <a href="/oracle遇到的坑/" class="post-title-link" itemprop="url">oracle遇到的坑</a>
-              
-            
-          </h2>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-
-            
-            
-            
-
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-
-              
-                
-              
-
-              <time title="创建时间：2018-10-06 20:56:34" itemprop="dateCreated datePublished" datetime="2018-10-06T20:56:34+00:00">2018-10-06</time>
-            
-
-            
-          </span>
-
-          
-            <span class="post-category">
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing"><a href="/categories/java/" itemprop="url" rel="index"><span itemprop="name">java</span></a></span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-            
-          
-
-          
-          
-
-          
-            <span style="display:none">
-              阅读次数: <span class="busuanzi-value" id="busuanzi_value_page_pv"></span>
-            </span>
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <p>1.jpa如果打开<code>spring.jpa.hibernate.ddl-auto=update</code>的话，会把给定长度比较长的字段更新为LONG类型，但是LONG类型在oracle中，一张表只能存在一个列<br>解决办法就是手动把列类型修改成CLOB，或者使用flyway</p>
-<p>2.jpa在做update的时候，如果报错<br><code>ORA-22295: 不能把超过 4000 字节数据绑定到语句 1 中的 LOB 和 LONG</code><br>就是说不能同时update一张表中的LONG类型和BLOB/CLOB类型<br>解决办法是同一条sql，或者jpa的save中，只update一个LONG字段，或者多个BLOB/CLOB字段</p>
-<p>3.如果报错<br><code>ORA-01502: 索引 &#39;TEST0709.SYS_C0011897&#39; 或这类索引的分区处于不可用状态</code><br>解决办法是使用查询<br><code>select * from  user_indexes where status &lt;&gt; &#39;VALID&#39;;</code><br>查询到所有失效的索引，然后通过下面语句（替换要重建的索引名）来重建索引<br><code>alter index index_name rebuild;</code></p>
-
-          
-        
-      
-    </div>
-
-    
-
-    
-    
-    
-
-    
-
-    
-      
-    
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  
-
-  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://blog.maxisvest.com/三种启发式算法的意义/">
-
-    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="小于同学">
-      <meta itemprop="description" content="技术 生活 原创">
-      <meta itemprop="image" content="/images/avatarPicture/IMG_3667.JPG">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Maxisvest的博客">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h2 class="post-title" itemprop="name headline">
-                
-                
-                <a href="/三种启发式算法的意义/" class="post-title-link" itemprop="url">三种启发式算法的意义</a>
-              
-            
-          </h2>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-
-            
-            
-            
-
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-
-              
-                
-              
-
-              <time title="创建时间：2018-10-06 20:41:54" itemprop="dateCreated datePublished" datetime="2018-10-06T20:41:54+00:00">2018-10-06</time>
-            
-
-            
-          </span>
-
-          
-            <span class="post-category">
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing"><a href="/categories/java/" itemprop="url" rel="index"><span itemprop="name">java</span></a></span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-            
-          
-
-          
-          
-
-          
-            <span style="display:none">
-              阅读次数: <span class="busuanzi-value" id="busuanzi_value_page_pv"></span>
-            </span>
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <h3 id="Constructive-heuristic"><a href="#Constructive-heuristic" class="headerlink" title="Constructive heuristic"></a>Constructive heuristic</h3><p>构造性启发式是一种启发式方法，它以空解决方案开始，并重复扩展当前解决方案，直到获得完整的解决方案。它与本地搜索启发式不同，后者以完整的解决方案开始，然后尝试通过本地移动进一步改进当前的解决方案</p>
-<h3 id="metaheuristic"><a href="#metaheuristic" class="headerlink" title="metaheuristic"></a>metaheuristic</h3><p>有别于heuristic的一种方法，他是一种更通用的算法，也属于heuristic</p>
-<h3 id="Partitioned-Search"><a href="#Partitioned-Search" class="headerlink" title="Partitioned Search"></a>Partitioned Search</h3><p>Partitioned Search是一个可以进行分片计算的算法，在大规模计算中，可以将模型分割成多个区域，利用多核cpu进行运算，之后再拼成一个完整的解，即使cpu只有一个核，通常也比其他算法快，但是通过这种算法有可能得到的解不如只利用heuristic得到的解分数高</p>
-
-          
-        
-      
-    </div>
-
-    
-
-    
-    
-    
-
-    
-
-    
-      
-    
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  
-
-  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://blog.maxisvest.com/springboot-特别功能/">
-
-    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="小于同学">
-      <meta itemprop="description" content="技术 生活 原创">
-      <meta itemprop="image" content="/images/avatarPicture/IMG_3667.JPG">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Maxisvest的博客">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h2 class="post-title" itemprop="name headline">
-                
-                
-                <a href="/springboot-特别功能/" class="post-title-link" itemprop="url">springboot 特别功能</a>
-              
-            
-          </h2>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-
-            
-            
-            
-
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-
-              
-                
-              
-
-              <time title="创建时间：2018-07-17 19:23:04" itemprop="dateCreated datePublished" datetime="2018-07-17T19:23:04+00:00">2018-07-17</time>
-            
-
-            
-          </span>
-
-          
-            <span class="post-category">
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing"><a href="/categories/java/" itemprop="url" rel="index"><span itemprop="name">java</span></a></span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-            
-          
-
-          
-          
-
-          
-            <span style="display:none">
-              阅读次数: <span class="busuanzi-value" id="busuanzi_value_page_pv"></span>
-            </span>
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <h2 id="springboot可以指定外部配置文件"><a href="#springboot可以指定外部配置文件" class="headerlink" title="springboot可以指定外部配置文件"></a>springboot可以指定外部配置文件</h2><p>如果使用jar包启动，需要将配置文件放在和jar包同级的config文件夹下，如果在jar包内没有指定启动的配置文件名称，则config文件夹下的配置文件名必须为application.properties。如果使用tomcat启动springboot，则在tomcat的lib目录下新建config目录，操作步骤同上。<br>springboot中可以指定激活多个配置文件，<code>spring.profiles.active=dev,prod</code>，像这样使用逗号配置文件名隔开即可。</p>
-<h2 id="springboot-配置文件外置"><a href="#springboot-配置文件外置" class="headerlink" title="springboot 配置文件外置"></a>springboot 配置文件外置</h2><p>当然，还有一种可以读取配置文件的地方，就是启动应用的地方(启动tomcat时，你当前所在的目录，可以通过pwd看在哪里，如果配置文件在bin目录，然后通过脚本启动，必须先cd到bin目录，再执行启动)，将配置文件名固定为application.properties，可以将其中的内容覆盖至webapps下面启动的springboot项目中的配置文件，只有项目中的配置文件没有使用<code>spring.profiles.active</code>指定配置文件或仅指定default时生效，指定后，启动应用的地方的配置文件就不能生效了，需要注意的是，这种方式启动的tomcat是将这个配置文件共享的，包括由tomcat内springboot项目使用java -jar启动的应用都会受到这个配置文件的影响</p>
-
-          
-        
-      
-    </div>
-
-    
-
-    
-    
-    
-
-    
-
-    
-      
-    
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  
-
-  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://blog.maxisvest.com/flyway/">
-
-    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="小于同学">
-      <meta itemprop="description" content="技术 生活 原创">
-      <meta itemprop="image" content="/images/avatarPicture/IMG_3667.JPG">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Maxisvest的博客">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h2 class="post-title" itemprop="name headline">
-                
-                
-                <a href="/flyway/" class="post-title-link" itemprop="url">flyway</a>
-              
-            
-          </h2>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-
-            
-            
-            
-
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-
-              
-                
-              
-
-              <time title="创建时间：2018-06-22 16:02:27" itemprop="dateCreated datePublished" datetime="2018-06-22T16:02:27+00:00">2018-06-22</time>
-            
-
-            
-          </span>
-
-          
-            <span class="post-category">
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing"><a href="/categories/java/" itemprop="url" rel="index"><span itemprop="name">java</span></a></span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-            
-          
-
-          
-          
-
-          
-            <span style="display:none">
-              阅读次数: <span class="busuanzi-value" id="busuanzi_value_page_pv"></span>
-            </span>
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          <p>flyway用于数据库脚本升级的管理工具</p>
-<p>flyway在第一次使用的时候需要一个元数据表，叫做<code>schema_version</code>. 用来记录数据库迁移（或者更新的历史），这张表不需要手动建立，flyway会自己生成这张表，但是需要注意的是，这张表的首行必须是一条baseline，就像这样一样</p>
-<img src="/flyway/a.png">
-<p>这行可以在springboot的配置文件中加入，就像这样</p>
-<img src="/flyway/b.png">
-<p>它是一个基行，从他开始记录</p>
-<p>表中version字段为主键。<br>约定大于配置，在flyway中，有好几种数据库升级的方式，可以使用sql脚本，也可以使用java的方式，约定java类用这样的方式命名，最后会被flyway解析成3.11就像第一张图的样子，类或者sql脚本放在scr/main/java/db/migration文件夹下，这是约定</p>
-<img src="/flyway/c.png">
-          <!--noindex-->
-          
-            <div class="post-button text-center">
-              <a class="btn" href="/flyway/#more" rel="contents">
-                阅读全文 &raquo;
-              </a>
-            </div>
-          
-          <!--/noindex-->
-        
-      
-    </div>
-
-    
-
-    
-    
-    
-
-    
-
-    
-      
-    
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  
-
-  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://blog.maxisvest.com/java-HashMap（1-8版本）/">
-
-    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="小于同学">
-      <meta itemprop="description" content="技术 生活 原创">
-      <meta itemprop="image" content="/images/avatarPicture/IMG_3667.JPG">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Maxisvest的博客">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h2 class="post-title" itemprop="name headline">
-                
-                
-                <a href="/java-HashMap（1-8版本）/" class="post-title-link" itemprop="url">java HashMap（1.8版本）</a>
-              
-            
-          </h2>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-
-            
-            
-            
-
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-
-              
-                
-              
-
-              <time title="创建时间：2018-05-19 17:26:38" itemprop="dateCreated datePublished" datetime="2018-05-19T17:26:38+00:00">2018-05-19</time>
-            
-
-            
-          </span>
-
-          
-            <span class="post-category">
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing"><a href="/categories/java/" itemprop="url" rel="index"><span itemprop="name">java</span></a></span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-            
-          
-
-          
-          
-
-          
-            <span style="display:none">
-              阅读次数: <span class="busuanzi-value" id="busuanzi_value_page_pv"></span>
-            </span>
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          <h2 id="HashMap在1-8之后做了性能优化，1-8之前，主要采用了链表结构"><a href="#HashMap在1-8之后做了性能优化，1-8之前，主要采用了链表结构" class="headerlink" title="HashMap在1.8之后做了性能优化，1.8之前，主要采用了链表结构"></a>HashMap在1.8之后做了性能优化，1.8之前，主要采用了链表结构</h2><img src="/java-HashMap（1-8版本）/a.png">
-<p>如图所示，每个链表中所有元素的hash都相同 (这里的hash是指经过HashMap的hash()二次处理过的hash值)，元素hash值相同称为冲突<br>旧HashMap（指1.8之前）在寻找元素时先根据key计算hash，然后从table中找到对应的链表，然后遍历链表，找到具体的值，但是，当一个链表有太多元素时，遍历的时间就会变长，所以，在1.8时，新HashMap发生了改动，原先的链表可能会被替换成红黑树，因为红黑树在多元素时平均查找时间相对链表变得更短，当链表元素&gt;=8时，链表会被转换成红黑树，当红黑树元素&lt;=6时，会被还原成链表<br>ref <a href="https://blog.csdn.net/kingmax54212008/article/details/79662407" target="_blank" rel="noopener">https://blog.csdn.net/kingmax54212008/article/details/79662407</a> HashMap在JDK1.8前后区别精简说</p>
-          <!--noindex-->
-          
-            <div class="post-button text-center">
-              <a class="btn" href="/java-HashMap（1-8版本）/#more" rel="contents">
-                阅读全文 &raquo;
-              </a>
-            </div>
-          
-          <!--/noindex-->
-        
-      
-    </div>
-
-    
-
-    
-    
-    
-
-    
-
-    
-      
-    
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  
-
-  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
     <link itemprop="mainEntityOfPage" href="https://blog.maxisvest.com/hotspot版本虚拟机垃圾回收机制/">
 
     <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
@@ -2044,11 +1044,999 @@
 
 
     
+      
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://blog.maxisvest.com/windows部分cmd命令/">
+
+    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="小于同学">
+      <meta itemprop="description" content="技术 生活 原创">
+      <meta itemprop="image" content="/images/avatarPicture/IMG_3667.JPG">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Maxisvest的博客">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h2 class="post-title" itemprop="name headline">
+                
+                
+                <a href="/windows部分cmd命令/" class="post-title-link" itemprop="url">windows部分cmd命令(shell脚本)</a>
+              
+            
+          </h2>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+
+            
+            
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+
+              
+                
+              
+
+              <time title="创建时间：2017-12-19 16:08:17" itemprop="dateCreated datePublished" datetime="2017-12-19T16:08:17+00:00">2017-12-19</time>
+            
+
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing"><a href="/categories/windows/" itemprop="url" rel="index"><span itemprop="name">windows</span></a></span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+            
+          
+
+          
+          
+
+          
+            <span style="display:none">
+              阅读次数: <span class="busuanzi-value" id="busuanzi_value_page_pv"></span>
+            </span>
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <p>cmd命令/bat</p>
+<p><code>set title=tomcat</code><br>使用<code>set</code>来定义变量，使用<code>%tile%</code>来读取变量，例如<code>echo %title%</code><br><code>call</code>命令可以在一个bat中调用另一个bat，并且子bat的结束并不会导致调用它的bat结束<br><code>start cmd</code> 可以以一个新的窗口启动命令，<code>start cmd /c</code> 为在新窗口执行完后关闭，<code>start cmd /k</code> 相反，<code>start cmd</code>后如果需要指定多条命令，可以使用<code>&amp;&amp;</code>将多条命令连接<br><code>echo.</code>为显示回车</p>
+<p><code>if exist c:\temp\a.txt( echo &quot;exist&quot; ) else ( &quot;echo not exsit&quot; )</code></p>
+<p>这样写if语句，可以使用<code>exsit</code>或者<code>not exist</code></p>
+<p><code>taskkill /F</code> 是强制，<code>/FI</code> 是搜索, <code>/T</code>是结束该进程和相关的子进程，例如<br><code>taskkill /F /T /FI &quot;WINDOWTITLE eq tomcat&quot;</code></p>
+<p>在脚本后增加<code>pause</code>命令，可以使脚本运行窗口停留在<code>pause</code>的位置，方便观察报错信息</p>
+<p><code>netstat -ano | findstr 端口号</code>可以找见端口号对应的记录，记录的最后一行为pid<br><code>netstat -ano | findstr 8011</code></p>
+
+          
+        
+      
+    </div>
+
+    
+
+    
+    
+    
+
+    
+
+    
+      
+    
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://blog.maxisvest.com/linux设置ftp服务/">
+
+    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="小于同学">
+      <meta itemprop="description" content="技术 生活 原创">
+      <meta itemprop="image" content="/images/avatarPicture/IMG_3667.JPG">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Maxisvest的博客">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h2 class="post-title" itemprop="name headline">
+                
+                
+                <a href="/linux设置ftp服务/" class="post-title-link" itemprop="url">linux设置ftp服务</a>
+              
+            
+          </h2>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+
+            
+            
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+
+              
+                
+              
+
+              <time title="创建时间：2017-11-21 15:30:36" itemprop="dateCreated datePublished" datetime="2017-11-21T15:30:36+00:00">2017-11-21</time>
+            
+
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing"><a href="/categories/linux/" itemprop="url" rel="index"><span itemprop="name">linux</span></a></span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+            
+          
+
+          
+          
+
+          
+            <span style="display:none">
+              阅读次数: <span class="busuanzi-value" id="busuanzi_value_page_pv"></span>
+            </span>
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          <h3 id="安装vsftpd"><a href="#安装vsftpd" class="headerlink" title="安装vsftpd"></a>安装vsftpd</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">#安装vsftpd</span><br><span class="line">yum install -y vsftpd</span><br><span class="line">#设置开机启动</span><br><span class="line">systemctl enable vsftpd.service </span><br><span class="line"># 重启</span><br><span class="line">service vsftpd restart</span><br><span class="line"># 查看vsftpd服务的状态</span><br><span class="line">systemctl status vsftpd.service</span><br></pre></td></tr></table></figure>
+          <!--noindex-->
+          
+            <div class="post-button text-center">
+              <a class="btn" href="/linux设置ftp服务/#more" rel="contents">
+                阅读全文 &raquo;
+              </a>
+            </div>
+          
+          <!--/noindex-->
+        
+      
+    </div>
+
+    
+
+    
+    
+    
+
+    
+
+    
+      
+    
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://blog.maxisvest.com/maven使用插件利用json生成javabean/">
+
+    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="小于同学">
+      <meta itemprop="description" content="技术 生活 原创">
+      <meta itemprop="image" content="/images/avatarPicture/IMG_3667.JPG">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Maxisvest的博客">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h2 class="post-title" itemprop="name headline">
+                
+                
+                <a href="/maven使用插件利用json生成javabean/" class="post-title-link" itemprop="url">maven使用插件利用json生成javabean</a>
+              
+            
+          </h2>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+
+            
+            
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+
+              
+                
+              
+
+              <time title="创建时间：2017-08-26 15:27:20" itemprop="dateCreated datePublished" datetime="2017-08-26T15:27:20+00:00">2017-08-26</time>
+            
+
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing"><a href="/categories/java/" itemprop="url" rel="index"><span itemprop="name">java</span></a></span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+            
+          
+
+          
+          
+
+          
+            <span style="display:none">
+              阅读次数: <span class="busuanzi-value" id="busuanzi_value_page_pv"></span>
+            </span>
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <p>使用如下样例代码，注意json文件位置</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br></pre></td><td class="code"><pre><span class="line">&lt;plugin&gt;</span><br><span class="line">    &lt;groupId&gt;org.jsonschema2pojo&lt;/groupId&gt;</span><br><span class="line">    &lt;artifactId&gt;jsonschema2pojo-maven-plugin&lt;/artifactId&gt;</span><br><span class="line">    &lt;version&gt;0.4.30&lt;/version&gt;</span><br><span class="line">    &lt;executions&gt;</span><br><span class="line">        &lt;execution&gt;</span><br><span class="line">            &lt;id&gt;execution1&lt;/id&gt;</span><br><span class="line">            &lt;phase&gt;generate-sources&lt;/phase&gt;</span><br><span class="line">            &lt;configuration&gt;</span><br><span class="line">                &lt;sourcePaths&gt;</span><br><span class="line">                    &lt;sourcePath&gt;$&#123;basedir&#125;/schema/settings.json&lt;/sourcePath&gt;</span><br><span class="line">                    &lt;sourcePath&gt;$&#123;basedir&#125;/schema/stuStaticInfos.json&lt;/sourcePath&gt;</span><br><span class="line">                    &lt;sourcePath&gt;$&#123;basedir&#125;/schema/gradeInfo.json&lt;/sourcePath&gt;</span><br><span class="line">                &lt;/sourcePaths&gt;</span><br><span class="line">                &lt;targetPackage&gt;com.hqjl.classify.input.model&lt;/targetPackage&gt;</span><br><span class="line">                &lt;sourceType&gt;json&lt;/sourceType&gt;</span><br><span class="line">                &lt;serializable&gt;false&lt;/serializable&gt;</span><br><span class="line">                &lt;classNameSuffix&gt;Model&lt;/classNameSuffix&gt;</span><br><span class="line">                &lt;generateBuilders&gt;true&lt;/generateBuilders&gt;</span><br><span class="line">            &lt;/configuration&gt;</span><br><span class="line">            &lt;goals&gt;</span><br><span class="line">                &lt;goal&gt;generate&lt;/goal&gt;</span><br><span class="line">            &lt;/goals&gt;</span><br><span class="line">        &lt;/execution&gt;</span><br><span class="line">        &lt;execution&gt;</span><br><span class="line">            &lt;id&gt;execution2&lt;/id&gt;</span><br><span class="line">            &lt;phase&gt;generate-sources&lt;/phase&gt;</span><br><span class="line">            &lt;configuration&gt;</span><br><span class="line">                &lt;sourcePaths&gt;</span><br><span class="line">                    &lt;sourcePath&gt;$&#123;basedir&#125;/schema/results.json&lt;/sourcePath&gt;</span><br><span class="line">                &lt;/sourcePaths&gt;</span><br><span class="line">                &lt;targetPackage&gt;com.hqjl.classify.result.model&lt;/targetPackage&gt;</span><br><span class="line">                &lt;sourceType&gt;json&lt;/sourceType&gt;</span><br><span class="line">                &lt;serializable&gt;false&lt;/serializable&gt;</span><br><span class="line">                &lt;classNameSuffix&gt;Model&lt;/classNameSuffix&gt;</span><br><span class="line">                &lt;generateBuilders&gt;true&lt;/generateBuilders&gt;</span><br><span class="line">            &lt;/configuration&gt;</span><br><span class="line">            &lt;goals&gt;</span><br><span class="line">                &lt;goal&gt;generate&lt;/goal&gt;</span><br><span class="line">            &lt;/goals&gt;</span><br><span class="line">        &lt;/execution&gt;</span><br><span class="line">        &lt;execution&gt;</span><br><span class="line">            &lt;id&gt;execution3&lt;/id&gt;</span><br><span class="line">            &lt;phase&gt;generate-sources&lt;/phase&gt;</span><br><span class="line">            &lt;configuration&gt;</span><br><span class="line">                &lt;sourcePaths&gt;</span><br><span class="line">                    &lt;sourcePath&gt;$&#123;basedir&#125;/schema/actionId.json&lt;/sourcePath&gt;</span><br><span class="line">                &lt;/sourcePaths&gt;</span><br><span class="line">                &lt;targetPackage&gt;com.hqjl.classify.request&lt;/targetPackage&gt;</span><br><span class="line">                &lt;sourceType&gt;json&lt;/sourceType&gt;</span><br><span class="line">                &lt;serializable&gt;false&lt;/serializable&gt;</span><br><span class="line">                &lt;classNameSuffix&gt;Model&lt;/classNameSuffix&gt;</span><br><span class="line">                &lt;generateBuilders&gt;true&lt;/generateBuilders&gt;</span><br><span class="line">            &lt;/configuration&gt;</span><br><span class="line">            &lt;goals&gt;</span><br><span class="line">                &lt;goal&gt;generate&lt;/goal&gt;</span><br><span class="line">            &lt;/goals&gt;</span><br><span class="line">        &lt;/execution&gt;</span><br><span class="line"></span><br><span class="line">    &lt;/executions&gt;</span><br><span class="line"></span><br><span class="line">&lt;/plugin&gt;</span><br></pre></td></tr></table></figure>
+          
+        
+      
+    </div>
+
+    
+
+    
+    
+    
+
+    
+
+    
+      
+    
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://blog.maxisvest.com/react编译/">
+
+    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="小于同学">
+      <meta itemprop="description" content="技术 生活 原创">
+      <meta itemprop="image" content="/images/avatarPicture/IMG_3667.JPG">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Maxisvest的博客">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h2 class="post-title" itemprop="name headline">
+                
+                
+                <a href="/react编译/" class="post-title-link" itemprop="url">react编译</a>
+              
+            
+          </h2>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+
+            
+            
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+
+              
+                
+              
+
+              <time title="创建时间：2017-08-02 18:34:21" itemprop="dateCreated datePublished" datetime="2017-08-02T18:34:21+00:00">2017-08-02</time>
+            
+
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing"><a href="/categories/react/" itemprop="url" rel="index"><span itemprop="name">react</span></a></span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+            
+          
+
+          
+          
+
+          
+            <span style="display:none">
+              阅读次数: <span class="busuanzi-value" id="busuanzi_value_page_pv"></span>
+            </span>
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <p>编译项目下的页面</p>
+<p>在命令窗口中使用  <code>npm install -g cnpm --registry=https://registry.npm.taobao.org</code>  命令来下载淘宝镜像的node_modules缓存（暂时这样理解），之后进入所需目录执行  cnpm install  来安装依赖模块node_modules，node_modules可能根据不同路径大小不一样，依赖包安装好后使用  webpack -d  （也有可能使用  npm run dev  命令来编译，具体情况可以询问）命令来编译文件，最后生成编译后的的dist文件夹</p>
+<p>webcontent目录可能需要node_modules依赖模，其他子系统如plantformmanager文件夹下依次生成node_modules模块和编译dist文件夹，那个模块需要使用，就编译哪个模块，每个模块都需要node_modules和dist文件夹，webcontent目录可能不管如何都需要node_modules</p>
+
+          
+        
+      
+    </div>
+
+    
+
+    
+    
+    
+
+    
+
+    
+      
+    
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://blog.maxisvest.com/tomcat8启用gzip压缩/">
+
+    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="小于同学">
+      <meta itemprop="description" content="技术 生活 原创">
+      <meta itemprop="image" content="/images/avatarPicture/IMG_3667.JPG">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Maxisvest的博客">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h2 class="post-title" itemprop="name headline">
+                
+                
+                <a href="/tomcat8启用gzip压缩/" class="post-title-link" itemprop="url">tomcat8启用gzip压缩</a>
+              
+            
+          </h2>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+
+            
+            
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+
+              
+                
+              
+
+              <time title="创建时间：2017-07-01 18:25:32" itemprop="dateCreated datePublished" datetime="2017-07-01T18:25:32+00:00">2017-07-01</time>
+            
+
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing"><a href="/categories/java/" itemprop="url" rel="index"><span itemprop="name">java</span></a></span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+            
+          
+
+          
+          
+
+          
+            <span style="display:none">
+              阅读次数: <span class="busuanzi-value" id="busuanzi_value_page_pv"></span>
+            </span>
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <p>方法非常简单，只需要在Connector节点中加入以下内容即可：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">useSendfile=&quot;false&quot;</span><br><span class="line">compression=&quot;on&quot;   </span><br><span class="line">compressionMinSize=&quot;50&quot; </span><br><span class="line">noCompressionUserAgents=&quot;gozilla, traviata&quot;   </span><br><span class="line">compressableMimeType=&quot;text/html,text/xml,text/javascript,text/css,text/plain,application/javascript,application/x-javascript&quot;</span><br></pre></td></tr></table></figure>
+          
+        
+      
+    </div>
+
+    
+
+    
+    
+    
+
+    
+
+    
+      
+    
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://blog.maxisvest.com/初识rest风格api/">
+
+    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="小于同学">
+      <meta itemprop="description" content="技术 生活 原创">
+      <meta itemprop="image" content="/images/avatarPicture/IMG_3667.JPG">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Maxisvest的博客">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h2 class="post-title" itemprop="name headline">
+                
+                
+                <a href="/初识rest风格api/" class="post-title-link" itemprop="url">初识rest风格api</a>
+              
+            
+          </h2>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+
+            
+            
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+
+              
+                
+              
+
+              <time title="创建时间：2017-05-25 18:19:18" itemprop="dateCreated datePublished" datetime="2017-05-25T18:19:18+00:00">2017-05-25</time>
+            
+
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing"><a href="/categories/java/" itemprop="url" rel="index"><span itemprop="name">java</span></a></span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+            
+          
+
+          
+          
+
+          
+            <span style="display:none">
+              阅读次数: <span class="busuanzi-value" id="busuanzi_value_page_pv"></span>
+            </span>
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          <p>本着对rest的学习，记录下学习的心得。</p>
+<h3 id="首先什么是rest"><a href="#首先什么是rest" class="headerlink" title="首先什么是rest"></a>首先什么是rest</h3><p>用我的话说就是他是一个无状态的url或者说是uri对应服务器上的一个资源，使用http的post（增），delete（删），put（改），get（查）来标记请求的动作。再简单点就是用url来标记资源位置，用http来描述动作。</p>
+<h3 id="样例"><a href="#样例" class="headerlink" title="样例"></a>样例</h3><p>服务器中可以用springMVC的注解<code>@pathVariable</code>来获得url的资源位置，例如<code>http://example/v1/user/123</code>中，可以使用<code>@pathVariable</code>来获得123这个标记，在springMVC的<code>@requestMapping</code>注解中除了使用<code>value</code>属性来映射请求地之外，可以加上method属性来标记这个方法对应http请求的哪种操作。例如：</p>
+          <!--noindex-->
+          
+            <div class="post-button text-center">
+              <a class="btn" href="/初识rest风格api/#more" rel="contents">
+                阅读全文 &raquo;
+              </a>
+            </div>
+          
+          <!--/noindex-->
+        
+      
+    </div>
+
+    
+
+    
+    
+    
+
+    
+
+    
+      
+    
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
   </section>
 
   
   <nav class="pagination">
-    <a class="extend prev" rel="prev" href="/page/2/"><i class="fa fa-angle-left" aria-label="上一页"></i></a><a class="page-number" href="/">1</a><a class="page-number" href="/page/2/">2</a><span class="page-number current">3</span><a class="page-number" href="/page/4/">4</a><a class="page-number" href="/page/5/">5</a><a class="extend next" rel="next" href="/page/4/"><i class="fa fa-angle-right" aria-label="下一页"></i></a>
+    <a class="extend prev" rel="prev" href="/page/2/"><i class="fa fa-angle-left" aria-label="上一页"></i></a><a class="page-number" href="/">1</a><a class="page-number" href="/page/2/">2</a><span class="page-number current">3</span><a class="page-number" href="/page/4/">4</a><a class="extend next" rel="next" href="/page/4/"><i class="fa fa-angle-right" aria-label="下一页"></i></a>
   </nav>
 
 
@@ -2093,7 +2081,7 @@
                 
                   <a href="/archives/">
                 
-                    <span class="site-state-item-count">49</span>
+                    <span class="site-state-item-count">39</span>
                     <span class="site-state-item-name">日志</span>
                   </a>
                 </div>
@@ -2132,9 +2120,7 @@
                     
                       
                     
-                      
-                    
-                    <span class="site-state-item-count">14</span>
+                    <span class="site-state-item-count">13</span>
                     <span class="site-state-item-name">分类</span>
                   </a>
                 </div>
@@ -2207,15 +2193,7 @@
                     
                       
                     
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                    <span class="site-state-item-count">34</span>
+                    <span class="site-state-item-count">30</span>
                     <span class="site-state-item-name">标签</span>
                   </a>
                 </div>

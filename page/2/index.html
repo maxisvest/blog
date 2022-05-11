@@ -390,682 +390,6 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://blog.maxisvest.com/TCP-为什么是三次握手？为什么四次挥手？/">
-
-    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="小于同学">
-      <meta itemprop="description" content="技术 生活 原创">
-      <meta itemprop="image" content="/images/avatarPicture/IMG_3667.JPG">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Maxisvest的博客">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h2 class="post-title" itemprop="name headline">
-                
-                
-                <a href="/TCP-为什么是三次握手？为什么四次挥手？/" class="post-title-link" itemprop="url">TCP 为什么是三次握手？为什么四次挥手？</a>
-              
-            
-          </h2>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-
-            
-            
-            
-
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-
-              
-                
-              
-
-              <time title="创建时间：2020-03-02 09:38:13" itemprop="dateCreated datePublished" datetime="2020-03-02T09:38:13+00:00">2020-03-02</time>
-            
-
-            
-          </span>
-
-          
-            <span class="post-category">
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing"><a href="/categories/网络/" itemprop="url" rel="index"><span itemprop="name">网络</span></a></span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-            
-          
-
-          
-          
-
-          
-            <span style="display:none">
-              阅读次数: <span class="busuanzi-value" id="busuanzi_value_page_pv"></span>
-            </span>
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          <p>网上各路大佬都写了好多，看的我云里雾里，不过还是有些感触的</p>
-<h2 id="三次握手"><a href="#三次握手" class="headerlink" title="三次握手"></a>三次握手</h2><p>对于举例最频繁的就是<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">A -&gt;    在不   -&gt; B</span><br><span class="line">A &lt;- 在，你在不 &lt;- B</span><br><span class="line">A -&gt;    在     -&gt; B</span><br></pre></td></tr></table></figure></p>
-<p>补充一下A为客户端，B为服务端，或者说这里说客户端服务端不太合适，应该叫主动发起端和被动接收端，两个服务之间都有向对方传输的能力，所以在TCP中，两个服务在建立连接的时候主动要求建立的叫客户端<br>虽然看上去通俗易懂，但是其实省略了关键细节<br>TCP为什么称之为可靠的传输协议，因为双方都在做一些检查，其中最重要的检查莫过于对双方序列号的校验<br>第一步握手，A主动发送同步请求<strong>SYN</strong>，B端处于listen状态，A在发送<strong>SYN</strong>请求的时候是会携带一个A生成序号<strong>ISN</strong>（identity serial number）<br>第二步握手，B在收到请求后记录A的<strong>ISN</strong>，然后会向A发送确认请求<strong>ACK</strong>，并且向A发送自己的同步请求<strong>SYN</strong>和序号<strong>ISN</strong><br>第三步握手，A在收到B的同步请求记录B的<strong>ISN</strong>,然后向B发送已收到<strong>ACK</strong></p>
-<h4 id="为什么不是两次或四次"><a href="#为什么不是两次或四次" class="headerlink" title="为什么不是两次或四次"></a>为什么不是两次或四次</h4><p>两次的话只有B能确认A的序号，A在本该确认B的序号的第三步被省略了，所以肯定是不行的<br>四次的话其实已经没必要了，三次已经将足够需要确认的数据传输完毕，没有必要传输第四次了</p>
-<h4 id="为什么ACK数据包不要确认"><a href="#为什么ACK数据包不要确认" class="headerlink" title="为什么ACK数据包不要确认"></a>为什么<strong>ACK</strong>数据包不要确认</h4><p><strong>ACK</strong>数据包本身就是一个确认另一端请求的数据包，试想一下，假如<strong>ACK</strong>需要确认，接收端收到<strong>ACK</strong>后向发送端确认<strong>ACK</strong>，发送端收到<strong>ACK</strong>后又向接收端确认<strong>ACK</strong>，是不是就无限循环下去了呢</p>
-          <!--noindex-->
-          
-            <div class="post-button text-center">
-              <a class="btn" href="/TCP-为什么是三次握手？为什么四次挥手？/#more" rel="contents">
-                阅读全文 &raquo;
-              </a>
-            </div>
-          
-          <!--/noindex-->
-        
-      
-    </div>
-
-    
-
-    
-    
-    
-
-    
-
-    
-      
-    
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  
-
-  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://blog.maxisvest.com/一种简单的mysql数据压缩方案/">
-
-    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="小于同学">
-      <meta itemprop="description" content="技术 生活 原创">
-      <meta itemprop="image" content="/images/avatarPicture/IMG_3667.JPG">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Maxisvest的博客">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h2 class="post-title" itemprop="name headline">
-                
-                
-                <a href="/一种简单的mysql数据压缩方案/" class="post-title-link" itemprop="url">一种简单的mysql数据压缩方案</a>
-              
-            
-          </h2>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-
-            
-            
-            
-
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-
-              
-                
-              
-
-              <time title="创建时间：2019-09-02 18:36:25" itemprop="dateCreated datePublished" datetime="2019-09-02T18:36:25+00:00">2019-09-02</time>
-            
-
-            
-          </span>
-
-          
-            <span class="post-category">
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing"><a href="/categories/数据库/" itemprop="url" rel="index"><span itemprop="name">数据库</span></a></span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-            
-          
-
-          
-          
-
-          
-            <span style="display:none">
-              阅读次数: <span class="busuanzi-value" id="busuanzi_value_page_pv"></span>
-            </span>
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          <h3 id="方案"><a href="#方案" class="headerlink" title="方案"></a>方案</h3><p>业务中某张表存储的数据量较大，导致磁盘飞速增长<br>于是需要找到一种方案来减小线上数据库的占用量</p>
-<p>业务使用的数据库为mysql数据库，InnoDB引擎<br>故可以考虑使用InnoDB引擎自带的压缩方案</p>
-<h3 id="教程"><a href="#教程" class="headerlink" title="教程"></a>教程</h3><p>1.查询表原来所占的空间<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">select concat(round(sum(data_length/1024/1024),2),&apos;MB&apos;) as data </span><br><span class="line">from information_schema.tables </span><br><span class="line">where table_schema=&apos;数据库名&apos; AND table_name = &apos;表名&apos;;</span><br></pre></td></tr></table></figure></p>
-          <!--noindex-->
-          
-            <div class="post-button text-center">
-              <a class="btn" href="/一种简单的mysql数据压缩方案/#more" rel="contents">
-                阅读全文 &raquo;
-              </a>
-            </div>
-          
-          <!--/noindex-->
-        
-      
-    </div>
-
-    
-
-    
-    
-    
-
-    
-
-    
-      
-    
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  
-
-  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://blog.maxisvest.com/开源线性规划器optaplanner/">
-
-    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="小于同学">
-      <meta itemprop="description" content="技术 生活 原创">
-      <meta itemprop="image" content="/images/avatarPicture/IMG_3667.JPG">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Maxisvest的博客">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h2 class="post-title" itemprop="name headline">
-                
-                
-                <a href="/开源线性规划器optaplanner/" class="post-title-link" itemprop="url">开源线性规划器optaplanner</a>
-              
-            
-          </h2>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-
-            
-            
-            
-
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-
-              
-                
-              
-
-              <time title="创建时间：2019-08-24 21:31:27" itemprop="dateCreated datePublished" datetime="2019-08-24T21:31:27+00:00">2019-08-24</time>
-            
-
-            
-          </span>
-
-          
-            <span class="post-category">
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing"><a href="/categories/算法/" itemprop="url" rel="index"><span itemprop="name">算法</span></a></span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-            
-          
-
-          
-          
-
-          
-            <span style="display:none">
-              阅读次数: <span class="busuanzi-value" id="busuanzi_value_page_pv"></span>
-            </span>
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          <h3 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h3><p><a href="http://www.optaplanner.org" target="_blank" rel="noopener">optaplanner</a>为一个开源的整数规划求解器，不仅可以计算N皇后等经典算法问题，还可以解决目前很多现实问题，例如：</p>
-<p><li>最短路线</li></p>
-<p><li>服务器负载</li></p>
-<p><li>课表安排<br>等等</li></p>
-<p>其有着相对较快的求解速度以及多种约束编写方式。</p>
-<p>软件更新速度相对较快并且<a href="http://www.optaplanner.org" target="_blank" rel="noopener">文档</a>丰富特别的perfect。</p>
-<h3 id="模型及约束基本设计流程"><a href="#模型及约束基本设计流程" class="headerlink" title="模型及约束基本设计流程"></a>模型及约束基本设计流程</h3><h4 id="1-基本流程"><a href="#1-基本流程" class="headerlink" title="1.基本流程"></a>1.基本流程</h4><p>设计一个结果载体及各种决策变量，开始计算前，我们先初始化所有决策变量及结果变量，计算时由解法器解法器根据规则具体决定填充到哪个将决策变量田中到结果中的哪个位置，例如在一个课表编排中，决策变量可以是时间，结果变量是一个课程，课程上边有空着的时间槽，用来填充时间，当计算完成时，时间也就被填充到了课表变量上，那么，我们就得到了一个课程具体上课的时间。</p>
-          <!--noindex-->
-          
-            <div class="post-button text-center">
-              <a class="btn" href="/开源线性规划器optaplanner/#more" rel="contents">
-                阅读全文 &raquo;
-              </a>
-            </div>
-          
-          <!--/noindex-->
-        
-      
-    </div>
-
-    
-
-    
-    
-    
-
-    
-
-    
-      
-    
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  
-
-  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://blog.maxisvest.com/Mac-删除自带的ABC输入法/">
-
-    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="小于同学">
-      <meta itemprop="description" content="技术 生活 原创">
-      <meta itemprop="image" content="/images/avatarPicture/IMG_3667.JPG">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Maxisvest的博客">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h2 class="post-title" itemprop="name headline">
-                
-                
-                <a href="/Mac-删除自带的ABC输入法/" class="post-title-link" itemprop="url">Mac 删除自带的ABC输入法</a>
-              
-            
-          </h2>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-
-            
-            
-            
-
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-
-              
-                
-              
-
-              <time title="创建时间：2019-08-11 22:31:26" itemprop="dateCreated datePublished" datetime="2019-08-11T22:31:26+00:00">2019-08-11</time>
-            
-
-            
-          </span>
-
-          
-            <span class="post-category">
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing"><a href="/categories/mac/" itemprop="url" rel="index"><span itemprop="name">mac</span></a></span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-            
-          
-
-          
-          
-
-          
-            <span style="display:none">
-              阅读次数: <span class="busuanzi-value" id="busuanzi_value_page_pv"></span>
-            </span>
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <p>mac自带的输入法快捷键<code>ctrl + 空格</code>，不能使用<code>shift</code>来切换中英，切换起来十分费力<br>而又不能使用<code>中/英</code>键切换，因为touchbar的<code>esc</code>键我设置到了这个键位，必须有个实体按键才行<br>所以我使用搜狗输入法，此时会发现<code>ABC</code>输入法会在某些时候切换回前台，就很烦。。。<br>而<code>ABC</code>又无法删除，怎么解决呢</p>
-<p>1.先备份<code>~/Library/Preferences/com.apple.HIToolbox.plist</code><br>2.首先安装 <code>plistedit pro</code><br>3.然后将其设置为打开<code>plist</code>文件的默认应用<br>4.其次使用 <code>sudo open ~/Library/Preferences/com.apple.HIToolbox.plist</code>直接打开文件<br>5.删掉<code>AppleEnabledInputSources</code>节点下的带有<code>ABC</code>字样的子节点<br>6.保存重启电脑就ok了</p>
-<p>注意这个方法可以不用关闭<code>SIP</code><br>还有不能<code>cp</code>出去改完<code>cp</code>回来，不然会被<code>SIP</code>还原，必须直接修改本体才行</p>
-
-          
-        
-      
-    </div>
-
-    
-
-    
-    
-    
-
-    
-
-    
-      
-    
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  
-
-  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
     <link itemprop="mainEntityOfPage" href="https://blog.maxisvest.com/记录一次docker容器频繁oom的问题排查/">
 
     <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
@@ -1921,7 +1245,7 @@ yum install lxcfs-2.0.5-3.el7.centos.x86_64.rpm</code></p>
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://blog.maxisvest.com/windows-jeankins-搭建/">
+    <link itemprop="mainEntityOfPage" href="https://blog.maxisvest.com/java代理模式/">
 
     <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
       <meta itemprop="name" content="小于同学">
@@ -1941,7 +1265,7 @@ yum install lxcfs-2.0.5-3.el7.centos.x86_64.rpm</code></p>
           <h2 class="post-title" itemprop="name headline">
                 
                 
-                <a href="/windows-jeankins-搭建/" class="post-title-link" itemprop="url">windows jeankins 搭建</a>
+                <a href="/java代理模式/" class="post-title-link" itemprop="url">java代理模式</a>
               
             
           </h2>
@@ -1966,7 +1290,7 @@ yum install lxcfs-2.0.5-3.el7.centos.x86_64.rpm</code></p>
                 
               
 
-              <time title="创建时间：2018-11-06 16:32:17" itemprop="dateCreated datePublished" datetime="2018-11-06T16:32:17+00:00">2018-11-06</time>
+              <time title="创建时间：2018-10-21 15:14:01" itemprop="dateCreated datePublished" datetime="2018-10-21T15:14:01+00:00">2018-10-21</time>
             
 
             
@@ -2024,13 +1348,676 @@ yum install lxcfs-2.0.5-3.el7.centos.x86_64.rpm</code></p>
 
       
         
-          <h1 id="安装"><a href="#安装" class="headerlink" title="安装"></a>安装</h1><p>将war包放到任意目录，使用cmd切换到该目录执行 <code>java -jar jenkins.war</code>，记录安装过程中会出现的一个秘钥<br>安装好后默认是8080端口，打开后输入秘钥进入jenkins</p>
-<h1 id="配置"><a href="#配置" class="headerlink" title="配置"></a>配置</h1><p>系统设置中需要配置的有</p>
-<img src="/windows-jeankins-搭建/a.png">
+          <h1 id="代理"><a href="#代理" class="headerlink" title="代理"></a>代理</h1><p>代理模式就是使用代理技术动态生成一个类</p>
+<h1 id="两种代理方式"><a href="#两种代理方式" class="headerlink" title="两种代理方式"></a>两种代理方式</h1><p>有两种代理实现，一种是jdk自带的动态代理，另一种是cglib实现的代理</p>
+<p>jdk实现的过程是拿到需要实现的接口（可以使多个接口）以及具体的InvocationHandler，然后使用字节码拼成一个全新的类，这个类的内部有接口的所有方法，每个方法的实现相同，都是调用InvocationHandler，jdk的动态代理只能代理接口，不能代理普通类</p>
+<p>cglib实现的过程依旧是拿到需要实现的接口（可以使多个接口）或者普通类以及具体的MethodInterceptor ，然后通过字节码拼成一个新的代理类，这个代理类是继承自目标类，然后使用MethodInterceptor复写其中的方法，cglib的代理不仅可以代理接口，还可以代理普通类</p>
           <!--noindex-->
           
             <div class="post-button text-center">
-              <a class="btn" href="/windows-jeankins-搭建/#more" rel="contents">
+              <a class="btn" href="/java代理模式/#more" rel="contents">
+                阅读全文 &raquo;
+              </a>
+            </div>
+          
+          <!--/noindex-->
+        
+      
+    </div>
+
+    
+
+    
+    
+    
+
+    
+
+    
+      
+    
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://blog.maxisvest.com/oracle遇到的坑/">
+
+    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="小于同学">
+      <meta itemprop="description" content="技术 生活 原创">
+      <meta itemprop="image" content="/images/avatarPicture/IMG_3667.JPG">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Maxisvest的博客">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h2 class="post-title" itemprop="name headline">
+                
+                
+                <a href="/oracle遇到的坑/" class="post-title-link" itemprop="url">oracle遇到的坑</a>
+              
+            
+          </h2>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+
+            
+            
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+
+              
+                
+              
+
+              <time title="创建时间：2018-10-06 20:56:34" itemprop="dateCreated datePublished" datetime="2018-10-06T20:56:34+00:00">2018-10-06</time>
+            
+
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing"><a href="/categories/java/" itemprop="url" rel="index"><span itemprop="name">java</span></a></span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+            
+          
+
+          
+          
+
+          
+            <span style="display:none">
+              阅读次数: <span class="busuanzi-value" id="busuanzi_value_page_pv"></span>
+            </span>
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <p>1.jpa如果打开<code>spring.jpa.hibernate.ddl-auto=update</code>的话，会把给定长度比较长的字段更新为LONG类型，但是LONG类型在oracle中，一张表只能存在一个列<br>解决办法就是手动把列类型修改成CLOB，或者使用flyway</p>
+<p>2.jpa在做update的时候，如果报错<br><code>ORA-22295: 不能把超过 4000 字节数据绑定到语句 1 中的 LOB 和 LONG</code><br>就是说不能同时update一张表中的LONG类型和BLOB/CLOB类型<br>解决办法是同一条sql，或者jpa的save中，只update一个LONG字段，或者多个BLOB/CLOB字段</p>
+<p>3.如果报错<br><code>ORA-01502: 索引 &#39;TEST0709.SYS_C0011897&#39; 或这类索引的分区处于不可用状态</code><br>解决办法是使用查询<br><code>select * from  user_indexes where status &lt;&gt; &#39;VALID&#39;;</code><br>查询到所有失效的索引，然后通过下面语句（替换要重建的索引名）来重建索引<br><code>alter index index_name rebuild;</code></p>
+
+          
+        
+      
+    </div>
+
+    
+
+    
+    
+    
+
+    
+
+    
+      
+    
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://blog.maxisvest.com/三种启发式算法的意义/">
+
+    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="小于同学">
+      <meta itemprop="description" content="技术 生活 原创">
+      <meta itemprop="image" content="/images/avatarPicture/IMG_3667.JPG">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Maxisvest的博客">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h2 class="post-title" itemprop="name headline">
+                
+                
+                <a href="/三种启发式算法的意义/" class="post-title-link" itemprop="url">三种启发式算法的意义</a>
+              
+            
+          </h2>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+
+            
+            
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+
+              
+                
+              
+
+              <time title="创建时间：2018-10-06 20:41:54" itemprop="dateCreated datePublished" datetime="2018-10-06T20:41:54+00:00">2018-10-06</time>
+            
+
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing"><a href="/categories/java/" itemprop="url" rel="index"><span itemprop="name">java</span></a></span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+            
+          
+
+          
+          
+
+          
+            <span style="display:none">
+              阅读次数: <span class="busuanzi-value" id="busuanzi_value_page_pv"></span>
+            </span>
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h3 id="Constructive-heuristic"><a href="#Constructive-heuristic" class="headerlink" title="Constructive heuristic"></a>Constructive heuristic</h3><p>构造性启发式是一种启发式方法，它以空解决方案开始，并重复扩展当前解决方案，直到获得完整的解决方案。它与本地搜索启发式不同，后者以完整的解决方案开始，然后尝试通过本地移动进一步改进当前的解决方案</p>
+<h3 id="metaheuristic"><a href="#metaheuristic" class="headerlink" title="metaheuristic"></a>metaheuristic</h3><p>有别于heuristic的一种方法，他是一种更通用的算法，也属于heuristic</p>
+<h3 id="Partitioned-Search"><a href="#Partitioned-Search" class="headerlink" title="Partitioned Search"></a>Partitioned Search</h3><p>Partitioned Search是一个可以进行分片计算的算法，在大规模计算中，可以将模型分割成多个区域，利用多核cpu进行运算，之后再拼成一个完整的解，即使cpu只有一个核，通常也比其他算法快，但是通过这种算法有可能得到的解不如只利用heuristic得到的解分数高</p>
+
+          
+        
+      
+    </div>
+
+    
+
+    
+    
+    
+
+    
+
+    
+      
+    
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://blog.maxisvest.com/springboot-特别功能/">
+
+    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="小于同学">
+      <meta itemprop="description" content="技术 生活 原创">
+      <meta itemprop="image" content="/images/avatarPicture/IMG_3667.JPG">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Maxisvest的博客">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h2 class="post-title" itemprop="name headline">
+                
+                
+                <a href="/springboot-特别功能/" class="post-title-link" itemprop="url">springboot 特别功能</a>
+              
+            
+          </h2>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+
+            
+            
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+
+              
+                
+              
+
+              <time title="创建时间：2018-07-17 19:23:04" itemprop="dateCreated datePublished" datetime="2018-07-17T19:23:04+00:00">2018-07-17</time>
+            
+
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing"><a href="/categories/java/" itemprop="url" rel="index"><span itemprop="name">java</span></a></span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+            
+          
+
+          
+          
+
+          
+            <span style="display:none">
+              阅读次数: <span class="busuanzi-value" id="busuanzi_value_page_pv"></span>
+            </span>
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h2 id="springboot可以指定外部配置文件"><a href="#springboot可以指定外部配置文件" class="headerlink" title="springboot可以指定外部配置文件"></a>springboot可以指定外部配置文件</h2><p>如果使用jar包启动，需要将配置文件放在和jar包同级的config文件夹下，如果在jar包内没有指定启动的配置文件名称，则config文件夹下的配置文件名必须为application.properties。如果使用tomcat启动springboot，则在tomcat的lib目录下新建config目录，操作步骤同上。<br>springboot中可以指定激活多个配置文件，<code>spring.profiles.active=dev,prod</code>，像这样使用逗号配置文件名隔开即可。</p>
+<h2 id="springboot-配置文件外置"><a href="#springboot-配置文件外置" class="headerlink" title="springboot 配置文件外置"></a>springboot 配置文件外置</h2><p>当然，还有一种可以读取配置文件的地方，就是启动应用的地方(启动tomcat时，你当前所在的目录，可以通过pwd看在哪里，如果配置文件在bin目录，然后通过脚本启动，必须先cd到bin目录，再执行启动)，将配置文件名固定为application.properties，可以将其中的内容覆盖至webapps下面启动的springboot项目中的配置文件，只有项目中的配置文件没有使用<code>spring.profiles.active</code>指定配置文件或仅指定default时生效，指定后，启动应用的地方的配置文件就不能生效了，需要注意的是，这种方式启动的tomcat是将这个配置文件共享的，包括由tomcat内springboot项目使用java -jar启动的应用都会受到这个配置文件的影响</p>
+
+          
+        
+      
+    </div>
+
+    
+
+    
+    
+    
+
+    
+
+    
+      
+    
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://blog.maxisvest.com/flyway/">
+
+    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="小于同学">
+      <meta itemprop="description" content="技术 生活 原创">
+      <meta itemprop="image" content="/images/avatarPicture/IMG_3667.JPG">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Maxisvest的博客">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h2 class="post-title" itemprop="name headline">
+                
+                
+                <a href="/flyway/" class="post-title-link" itemprop="url">flyway</a>
+              
+            
+          </h2>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+
+            
+            
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+
+              
+                
+              
+
+              <time title="创建时间：2018-06-22 16:02:27" itemprop="dateCreated datePublished" datetime="2018-06-22T16:02:27+00:00">2018-06-22</time>
+            
+
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing"><a href="/categories/java/" itemprop="url" rel="index"><span itemprop="name">java</span></a></span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+            
+          
+
+          
+          
+
+          
+            <span style="display:none">
+              阅读次数: <span class="busuanzi-value" id="busuanzi_value_page_pv"></span>
+            </span>
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          <p>flyway用于数据库脚本升级的管理工具</p>
+<p>flyway在第一次使用的时候需要一个元数据表，叫做<code>schema_version</code>. 用来记录数据库迁移（或者更新的历史），这张表不需要手动建立，flyway会自己生成这张表，但是需要注意的是，这张表的首行必须是一条baseline，就像这样一样</p>
+<img src="/flyway/a.png">
+<p>这行可以在springboot的配置文件中加入，就像这样</p>
+<img src="/flyway/b.png">
+<p>它是一个基行，从他开始记录</p>
+<p>表中version字段为主键。<br>约定大于配置，在flyway中，有好几种数据库升级的方式，可以使用sql脚本，也可以使用java的方式，约定java类用这样的方式命名，最后会被flyway解析成3.11就像第一张图的样子，类或者sql脚本放在scr/main/java/db/migration文件夹下，这是约定</p>
+<img src="/flyway/c.png">
+          <!--noindex-->
+          
+            <div class="post-button text-center">
+              <a class="btn" href="/flyway/#more" rel="contents">
                 阅读全文 &raquo;
               </a>
             </div>
@@ -2079,7 +2066,7 @@ yum install lxcfs-2.0.5-3.el7.centos.x86_64.rpm</code></p>
 
   
   <nav class="pagination">
-    <a class="extend prev" rel="prev" href="/"><i class="fa fa-angle-left" aria-label="上一页"></i></a><a class="page-number" href="/">1</a><span class="page-number current">2</span><a class="page-number" href="/page/3/">3</a><span class="space">&hellip;</span><a class="page-number" href="/page/5/">5</a><a class="extend next" rel="next" href="/page/3/"><i class="fa fa-angle-right" aria-label="下一页"></i></a>
+    <a class="extend prev" rel="prev" href="/"><i class="fa fa-angle-left" aria-label="上一页"></i></a><a class="page-number" href="/">1</a><span class="page-number current">2</span><a class="page-number" href="/page/3/">3</a><a class="page-number" href="/page/4/">4</a><a class="extend next" rel="next" href="/page/3/"><i class="fa fa-angle-right" aria-label="下一页"></i></a>
   </nav>
 
 
@@ -2124,7 +2111,7 @@ yum install lxcfs-2.0.5-3.el7.centos.x86_64.rpm</code></p>
                 
                   <a href="/archives/">
                 
-                    <span class="site-state-item-count">49</span>
+                    <span class="site-state-item-count">39</span>
                     <span class="site-state-item-name">日志</span>
                   </a>
                 </div>
@@ -2163,9 +2150,7 @@ yum install lxcfs-2.0.5-3.el7.centos.x86_64.rpm</code></p>
                     
                       
                     
-                      
-                    
-                    <span class="site-state-item-count">14</span>
+                    <span class="site-state-item-count">13</span>
                     <span class="site-state-item-name">分类</span>
                   </a>
                 </div>
@@ -2238,15 +2223,7 @@ yum install lxcfs-2.0.5-3.el7.centos.x86_64.rpm</code></p>
                     
                       
                     
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                    <span class="site-state-item-count">34</span>
+                    <span class="site-state-item-count">30</span>
                     <span class="site-state-item-name">标签</span>
                   </a>
                 </div>
