@@ -1,4 +1,5 @@
 https://blog.maxisvest.com/我们公司为什么从Mysql切换成TibDB/
+https://blog.maxisvest.com/关于我的博客从腾讯云迁移至github以及评论插件valine切换的一些琐事/
 https://blog.maxisvest.com/一种可以整合spring-IoC机制的可插拔部署的技术思路/
 https://blog.maxisvest.com/全链路日志追踪方案及核心代码分析/
 https://blog.maxisvest.com/使用netatalk打造一款属于自己的Time-Machine在线备份服务器/
@@ -17,4 +18,3 @@ https://blog.maxisvest.com/java代理模式/
 https://blog.maxisvest.com/oracle遇到的坑/
 https://blog.maxisvest.com/三种启发式算法的意义/
 https://blog.maxisvest.com/springboot-特别功能/
-https://blog.maxisvest.com/flyway/
