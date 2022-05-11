@@ -1,6 +1,17 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title><![CDATA[测试2]]></title>
+    <url>%2F%E6%B5%8B%E8%AF%952%2F</url>
+    <content type="text"></content>
+      <categories>
+        <category>暂无分类</category>
+      </categories>
+      <tags>
+        <tag>暂无标签</tag>
+      </tags>
+  </entry>
+  <entry>
     <title><![CDATA[测试]]></title>
     <url>%2F%E6%B5%8B%E8%AF%95%2F</url>
     <content type="text"></content>
