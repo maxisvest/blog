@@ -120,25 +120,25 @@
 
 
 
-  <meta name="description" content="HashMap在1.8之后做了性能优化，1.8之前，主要采用了链表结构 如图所示，每个链表中所有元素的hash都相同 (这里的hash是指经过HashMap的hash()二次处理过的hash值)，元素hash值相同称为冲突旧HashMap（指1.8之前）在寻找元素时先根据key计算hash，然后从table中找到对应的链表，然后遍历链表，找到具体的值，但是，当一个链表有太多元素时，遍历的时间就会变">
-<meta name="keywords" content="java">
+  <meta name="description" content="欢迎访问我的博客🤩 blog.maxisvest.com">
+<meta name="keywords" content="maxisvest,市民于先生,小于同学">
 <meta property="og:type" content="website">
-<meta property="og:title" content="java HashMap（1.8版本）">
-<meta property="og:url" content="https://blog.maxisvest.com/archived/java-HashMap（1-8版本）.html">
+<meta property="og:title" content="Maxisvest的博客">
+<meta property="og:url" content="https://blog.maxisvest.com/README.html">
 <meta property="og:site_name" content="Maxisvest的博客">
-<meta property="og:description" content="HashMap在1.8之后做了性能优化，1.8之前，主要采用了链表结构 如图所示，每个链表中所有元素的hash都相同 (这里的hash是指经过HashMap的hash()二次处理过的hash值)，元素hash值相同称为冲突旧HashMap（指1.8之前）在寻找元素时先根据key计算hash，然后从table中找到对应的链表，然后遍历链表，找到具体的值，但是，当一个链表有太多元素时，遍历的时间就会变">
+<meta property="og:description" content="欢迎访问我的博客🤩 blog.maxisvest.com">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:updated_time" content="2022-05-25T07:14:49.542Z">
+<meta property="og:updated_time" content="2022-05-25T07:14:49.470Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="java HashMap（1.8版本）">
-<meta name="twitter:description" content="HashMap在1.8之后做了性能优化，1.8之前，主要采用了链表结构 如图所示，每个链表中所有元素的hash都相同 (这里的hash是指经过HashMap的hash()二次处理过的hash值)，元素hash值相同称为冲突旧HashMap（指1.8之前）在寻找元素时先根据key计算hash，然后从table中找到对应的链表，然后遍历链表，找到具体的值，但是，当一个链表有太多元素时，遍历的时间就会变">
+<meta name="twitter:title" content="Maxisvest的博客">
+<meta name="twitter:description" content="欢迎访问我的博客🤩 blog.maxisvest.com">
 
 
 
 
 
 
-  <link rel="canonical" href="https://blog.maxisvest.com/archived/java-HashMap（1-8版本）.html">
+  <link rel="canonical" href="https://blog.maxisvest.com/README.html">
 
 
 
@@ -148,7 +148,7 @@
   };
 </script>
 
-  <title>java HashMap（1.8版本） | Maxisvest的博客</title>
+  <title> | Maxisvest的博客</title>
   
 
 
@@ -400,7 +400,7 @@
     <div class="post-block page">
       <header class="post-header">
 
-<h2 class="post-title" itemprop="name headline">java HashMap（1.8版本）
+<h2 class="post-title" itemprop="name headline">
 
 </h2>
 
@@ -420,17 +420,7 @@
       <div class="post-body">
         
         
-          <h2 id="HashMap在1-8之后做了性能优化，1-8之前，主要采用了链表结构"><a href="#HashMap在1-8之后做了性能优化，1-8之前，主要采用了链表结构" class="headerlink" title="HashMap在1.8之后做了性能优化，1.8之前，主要采用了链表结构"></a>HashMap在1.8之后做了性能优化，1.8之前，主要采用了链表结构</h2>
-<p>如图所示，每个链表中所有元素的hash都相同 (这里的hash是指经过HashMap的hash()二次处理过的hash值)，元素hash值相同称为冲突<br>旧HashMap（指1.8之前）在寻找元素时先根据key计算hash，然后从table中找到对应的链表，然后遍历链表，找到具体的值，但是，当一个链表有太多元素时，遍历的时间就会变长，所以，在1.8时，新HashMap发生了改动，原先的链表可能会被替换成红黑树，因为红黑树在多元素时平均查找时间相对链表变得更短，当链表元素&gt;=8时，链表会被转换成红黑树，当红黑树元素&lt;=6时，会被还原成链表<br>ref <a href="https://blog.csdn.net/kingmax54212008/article/details/79662407" target="_blank" rel="noopener">https://blog.csdn.net/kingmax54212008/article/details/79662407</a> HashMap在JDK1.8前后区别精简说</p>
-<a id="more"></a>
-<h2 id="HashMap（jdk1-8）"><a href="#HashMap（jdk1-8）" class="headerlink" title="HashMap（jdk1.8）"></a>HashMap（jdk1.8）</h2><p>1.HashMap的链表中有一个假的指针，叫做next，由他来作为链表元素之间的连接</p>
-<p>2.HashMap的索引叫做table，table是一个数组，其中每一个元素是链表的头元素，capacity是初始化HashMap的时候table的长度，默认16，loadfactor是加载因子，默认0.75，当table利用率达到loadFactor*100%时，就会触发HashMap扩容，也就是table扩容，然后重新计算每个元素在table中的index，再放到相应的index链表中</p>
-<p>3.put方法</p>
-
-<p>①.判断键值对数组table[i]是否为空或为null，否则执行resize()进行扩容；<br>②.根据键值key计算hash值得到插入的数组索引i，如果table[i]==null，直接新建节点添加，转向⑥，如果table[i]不为空，转向③；<br>③.判断table[i]的首个元素是否和key一样，如果相同直接覆盖value，否则转向④，这里的相同指的是hashCode以及equals；<br>④.判断table[i] 是否为treeNode，即table[i] 是否是红黑树，如果是红黑树，则直接在树中插入键值对，否则转向⑤；<br>⑤.遍历table[i]，判断链表长度是否大于8，大于8的话把链表转换为红黑树，在红黑树中执行插入操作，否则进行链表的插入操作；遍历过程中若发现key已经存在直接覆盖value即可；<br>⑥.插入成功后，判断实际存在的键值对数量size是否超多了最大容量threshold，如果超过，进行扩容</p>
-<p>简单来说，就是先根据key的hash去table中找相应的链表（或者红黑树），然后先判断链表头，不是的话去看table的这个位置到底是链表还是红黑树，然后用相应的方法去新增或者覆盖</p>
-<p>4.get<br>get与put类似，都是根据key的hash来找到table中的链表（或者红黑树），然后遍历链表或者红黑树的查找方法来拿到value，具体流程为：<br>先判断table有没有元素，有元素的话根据key的hash找到对应的链表（或者红黑树），然后判断头部的key与查找的key一样不（与put方法中类似，首先满足两个key的hash相同，然后只要两个key的地址相同或者equals相同即可判断是否一样，利用了“||”的短路原理，==要比equals节省资源），一样直接就是找到，不一致再去遍历链表，或者调用红黑树的查找方法</p>
-<p>ref <a href="https://blog.csdn.net/qq_27093465/article/details/52207135" target="_blank" rel="noopener">https://blog.csdn.net/qq_27093465/article/details/52207135</a>   Java 8系列之重新认识HashMap<br>ref <a href="https://blog.csdn.net/qq_38182963/article/details/78942764" target="_blank" rel="noopener">https://blog.csdn.net/qq_38182963/article/details/78942764</a>   一个比较详尽的源码解读</p>
+          <h1 id="欢迎访问我的博客"><a href="#欢迎访问我的博客" class="headerlink" title="欢迎访问我的博客"></a>欢迎访问我的博客</h1><p>🤩 blog.maxisvest.com</p>
 
         
       </div>
@@ -670,7 +660,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#HashMap在1-8之后做了性能优化，1-8之前，主要采用了链表结构"><span class="nav-number">1.</span> <span class="nav-text">HashMap在1.8之后做了性能优化，1.8之前，主要采用了链表结构</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#HashMap（jdk1-8）"><span class="nav-number">2.</span> <span class="nav-text">HashMap（jdk1.8）</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#欢迎访问我的博客"><span class="nav-number">1.</span> <span class="nav-text">欢迎访问我的博客</span></a></li></ol></div>
             
 
           </div>
