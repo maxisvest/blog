@@ -9,12 +9,12 @@ https://blog.maxisvest.com/camunda引擎初探/
 https://blog.maxisvest.com/如何通过arthas在运行时执行代码/
 https://blog.maxisvest.com/搭建一套简单的fabric网络/
 https://blog.maxisvest.com/排查一次线上connect-reset-by-peer的异常/
+https://blog.maxisvest.com/TCP-为什么是三次握手？为什么四次挥手？/
 https://blog.maxisvest.com/一种简单的mysql数据压缩方案/
 https://blog.maxisvest.com/开源线性规划器optaplanner/
+https://blog.maxisvest.com/Mac-删除自带的ABC输入法/
 https://blog.maxisvest.com/记录一次docker容器频繁oom的问题排查/
 https://blog.maxisvest.com/使用lxcfs提高docker容器的资源可见性/
 https://blog.maxisvest.com/算法题Z字打印（或N字打印）/
 https://blog.maxisvest.com/一些相对实用的IDEA插件/
 https://blog.maxisvest.com/docker-指南/
-https://blog.maxisvest.com/java代理模式/
-https://blog.maxisvest.com/oracle遇到的坑/

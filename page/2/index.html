@@ -376,6 +376,11 @@
   <section id="posts" class="posts-expand">
     
       
+      
+        
+      
+      
+        
 
   
 
@@ -546,8 +551,22 @@
   </article>
 
 
+      
     
       
+      
+        
+          
+        
+      
+      
+    
+      
+      
+        
+      
+      
+        
 
   
 
@@ -715,8 +734,14 @@
   </article>
 
 
+      
     
       
+      
+        
+      
+      
+        
 
   
 
@@ -888,8 +913,22 @@
   </article>
 
 
+      
     
       
+      
+        
+          
+        
+      
+      
+    
+      
+      
+        
+      
+      
+        
 
   
 
@@ -1061,8 +1100,14 @@
   </article>
 
 
+      
     
       
+      
+        
+      
+      
+        
 
   
 
@@ -1233,8 +1278,14 @@ yum install lxcfs-2.0.5-3.el7.centos.x86_64.rpm</code></p>
   </article>
 
 
+      
     
       
+      
+        
+      
+      
+        
 
   
 
@@ -1408,8 +1459,14 @@ yum install lxcfs-2.0.5-3.el7.centos.x86_64.rpm</code></p>
   </article>
 
 
+      
     
       
+      
+        
+      
+      
+        
 
   
 
@@ -1574,8 +1631,14 @@ yum install lxcfs-2.0.5-3.el7.centos.x86_64.rpm</code></p>
   </article>
 
 
+      
     
       
+      
+        
+      
+      
+        
 
   
 
@@ -1743,339 +1806,7 @@ yum install lxcfs-2.0.5-3.el7.centos.x86_64.rpm</code></p>
   </article>
 
 
-    
       
-
-  
-
-  
-  
-  
-
-  
-
-  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://blog.maxisvest.com/java代理模式/">
-
-    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="小于同学">
-      <meta itemprop="description" content="技术 生活 原创">
-      <meta itemprop="image" content="/images/avatarPicture/IMG_3667.JPG">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Maxisvest的博客">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h2 class="post-title" itemprop="name headline">
-                
-                
-                <a href="/java代理模式/" class="post-title-link" itemprop="url">java代理模式</a>
-              
-            
-          </h2>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-
-            
-            
-            
-
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-
-              
-                
-              
-
-              <time title="创建时间：2018-10-21 15:14:01" itemprop="dateCreated datePublished" datetime="2018-10-21T15:14:01+00:00">2018-10-21</time>
-            
-
-            
-          </span>
-
-          
-            <span class="post-category">
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing"><a href="/categories/java/" itemprop="url" rel="index"><span itemprop="name">java</span></a></span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-            
-          
-
-          
-          
-
-          
-            <span style="display:none">
-              阅读次数: <span class="busuanzi-value" id="busuanzi_value_page_pv"></span>
-            </span>
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          <h1 id="代理"><a href="#代理" class="headerlink" title="代理"></a>代理</h1><p>代理模式就是使用代理技术动态生成一个类</p>
-<h1 id="两种代理方式"><a href="#两种代理方式" class="headerlink" title="两种代理方式"></a>两种代理方式</h1><p>有两种代理实现，一种是jdk自带的动态代理，另一种是cglib实现的代理</p>
-<p>jdk实现的过程是拿到需要实现的接口（可以使多个接口）以及具体的InvocationHandler，然后使用字节码拼成一个全新的类，这个类的内部有接口的所有方法，每个方法的实现相同，都是调用InvocationHandler，jdk的动态代理只能代理接口，不能代理普通类</p>
-<p>cglib实现的过程依旧是拿到需要实现的接口（可以使多个接口）或者普通类以及具体的MethodInterceptor ，然后通过字节码拼成一个新的代理类，这个代理类是继承自目标类，然后使用MethodInterceptor复写其中的方法，cglib的代理不仅可以代理接口，还可以代理普通类</p>
-          <!--noindex-->
-          
-            <div class="post-button text-center">
-              <a class="btn" href="/java代理模式/#more" rel="contents">
-                阅读全文 &raquo;
-              </a>
-            </div>
-          
-          <!--/noindex-->
-        
-      
-    </div>
-
-    
-
-    
-    
-    
-
-    
-
-    
-      
-    
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  
-
-  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://blog.maxisvest.com/oracle遇到的坑/">
-
-    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="小于同学">
-      <meta itemprop="description" content="技术 生活 原创">
-      <meta itemprop="image" content="/images/avatarPicture/IMG_3667.JPG">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Maxisvest的博客">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h2 class="post-title" itemprop="name headline">
-                
-                
-                <a href="/oracle遇到的坑/" class="post-title-link" itemprop="url">oracle遇到的坑</a>
-              
-            
-          </h2>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-
-            
-            
-            
-
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-
-              
-                
-              
-
-              <time title="创建时间：2018-10-06 20:56:34" itemprop="dateCreated datePublished" datetime="2018-10-06T20:56:34+00:00">2018-10-06</time>
-            
-
-            
-          </span>
-
-          
-            <span class="post-category">
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing"><a href="/categories/java/" itemprop="url" rel="index"><span itemprop="name">java</span></a></span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-            
-          
-
-          
-          
-
-          
-            <span style="display:none">
-              阅读次数: <span class="busuanzi-value" id="busuanzi_value_page_pv"></span>
-            </span>
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <p>1.jpa如果打开<code>spring.jpa.hibernate.ddl-auto=update</code>的话，会把给定长度比较长的字段更新为LONG类型，但是LONG类型在oracle中，一张表只能存在一个列<br>解决办法就是手动把列类型修改成CLOB，或者使用flyway</p>
-<p>2.jpa在做update的时候，如果报错<br><code>ORA-22295: 不能把超过 4000 字节数据绑定到语句 1 中的 LOB 和 LONG</code><br>就是说不能同时update一张表中的LONG类型和BLOB/CLOB类型<br>解决办法是同一条sql，或者jpa的save中，只update一个LONG字段，或者多个BLOB/CLOB字段</p>
-<p>3.如果报错<br><code>ORA-01502: 索引 &#39;TEST0709.SYS_C0011897&#39; 或这类索引的分区处于不可用状态</code><br>解决办法是使用查询<br><code>select * from  user_indexes where status &lt;&gt; &#39;VALID&#39;;</code><br>查询到所有失效的索引，然后通过下面语句（替换要重建的索引名）来重建索引<br><code>alter index index_name rebuild;</code></p>
-
-          
-        
-      
-    </div>
-
-    
-
-    
-    
-    
-
-    
-
-    
-      
-    
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
     
   </section>
 
@@ -2126,7 +1857,7 @@ yum install lxcfs-2.0.5-3.el7.centos.x86_64.rpm</code></p>
                 
                   <a href="/archives/">
                 
-                    <span class="site-state-item-count">42</span>
+                    <span class="site-state-item-count">50</span>
                     <span class="site-state-item-name">日志</span>
                   </a>
                 </div>
@@ -2244,7 +1975,13 @@ yum install lxcfs-2.0.5-3.el7.centos.x86_64.rpm</code></p>
                     
                       
                     
-                    <span class="site-state-item-count">32</span>
+                      
+                    
+                      
+                    
+                      
+                    
+                    <span class="site-state-item-count">35</span>
                     <span class="site-state-item-name">标签</span>
                   </a>
                 </div>

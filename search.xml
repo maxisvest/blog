@@ -124,6 +124,17 @@
       </tags>
   </entry>
   <entry>
+    <title><![CDATA[TCP 为什么是三次握手？为什么四次挥手？]]></title>
+    <url>%2FTCP-%E4%B8%BA%E4%BB%80%E4%B9%88%E6%98%AF%E4%B8%89%E6%AC%A1%E6%8F%A1%E6%89%8B%EF%BC%9F%E4%B8%BA%E4%BB%80%E4%B9%88%E5%9B%9B%E6%AC%A1%E6%8C%A5%E6%89%8B%EF%BC%9F%2F</url>
+    <content type="text"><![CDATA[网上各路大佬都写了好多，看的我云里雾里，不过还是有些感触的 三次握手对于举例最频繁的就是123A -&gt; 在不 -&gt; BA &lt;- 在，你在不 &lt;- BA -&gt; 在 -&gt; B 补充一下A为客户端，B为服务端，或者说这里说客户端服务端不太合适，应该叫主动发起端和被动接收端，两个服务之间都有向对方传输的能力，所以在TCP中，两个服务在建立连接的时候主动要求建立的叫客户端虽然看上去通俗易懂，但是其实省略了关键细节TCP为什么称之为可靠的传输协议，因为双方都在做一些检查，其中最重要的检查莫过于对双方序列号的校验第一步握手，A主动发送同步请求SYN，B端处于listen状态，A在发送SYN请求的时候是会携带一个A生成序号ISN（identity serial number）第二步握手，B在收到请求后记录A的ISN，然后会向A发送确认请求ACK，并且向A发送自己的同步请求SYN和序号ISN第三步握手，A在收到B的同步请求记录B的ISN,然后向B发送已收到ACK 为什么不是两次或四次两次的话只有B能确认A的序号，A在本该确认B的序号的第三步被省略了，所以肯定是不行的四次的话其实已经没必要了，三次已经将足够需要确认的数据传输完毕，没有必要传输第四次了 为什么ACK数据包不要确认ACK数据包本身就是一个确认另一端请求的数据包，试想一下，假如ACK需要确认，接收端收到ACK后向发送端确认ACK，发送端收到ACK后又向接收端确认ACK，是不是就无限循环下去了呢 四次挥手其实关闭连接的四次挥手大致与三次握手相似，可以理解为将SYN包换成FIN包，并且将三次握手的第二步的SYN+ACK拆成了两步所以就是1234A -&gt; 关了啊 -&gt; BA &lt;- 好的 &lt;- BA &lt;-那我也关了啊&lt;- BA -&gt; 好的 -&gt; B 那么这里就奇怪了，为什么服务端要把关闭+确认请求拆成两份呢，其实是这样子的在三次握手中双发仅仅是建立连接，确认连接关系，没有数据传输，所以为了节省资源和带宽，将SYN和ACK同时发送了而关闭连接不一样，其中一端（A）发送FIN请求关闭连接时，另一端（B）或许正在写入数据，那么就只能先响应ACK说我收到关闭请求了，将数据写完后再向A发送FIN，这时就可以正常关闭连接了 补充一张网图加深理解 第一步，FIN_WAIT_1很难遇到，因为下一步基本服务端都会秒回ACK第二步，服务端秒回ACK后，服务端进入CLOSE_WAIT状态，在考虑是否还有数据要发送或者正在发送，客户端收到ACK相应进入FIN_WAIT_2，等待服务端的数据发送完后的FIN包第三步，服务端考虑完并完成传输后，会紧接着发送FIN包到客户端，进入LAST_ACK状态，客户端收到后进入TIME_WAIT状态第四部，客户端向服务端发送ACK确认收到服务端的关闭请求，整个关闭流程结束]]></content>
+      <categories>
+        <category>网络</category>
+      </categories>
+      <tags>
+        <tag>java</tag>
+      </tags>
+  </entry>
+  <entry>
     <title><![CDATA[一种简单的mysql数据压缩方案]]></title>
     <url>%2F%E4%B8%80%E7%A7%8D%E7%AE%80%E5%8D%95%E7%9A%84mysql%E6%95%B0%E6%8D%AE%E5%8E%8B%E7%BC%A9%E6%96%B9%E6%A1%88%2F</url>
     <content type="text"><![CDATA[方案业务中某张表存储的数据量较大，导致磁盘飞速增长于是需要找到一种方案来减小线上数据库的占用量 业务使用的数据库为mysql数据库，InnoDB引擎故可以考虑使用InnoDB引擎自带的压缩方案 教程1.查询表原来所占的空间123select concat(round(sum(data_length/1024/1024),2),&apos;MB&apos;) as data from information_schema.tables where table_schema=&apos;数据库名&apos; AND table_name = &apos;表名&apos;; 2.设置压缩12SET GLOBAL innodb_file_per_table=1;SET GLOBAL innodb_file_format=Barracuda; 3.创建支持压缩的表或将已存在的表压缩12345-- 创建支持压缩的表CREATE TABLE 表名 (字段名 INT PRIMARY KEY,content varchar(255)) ROW_FORMAT=COMPRESSEDKEY_BLOCK_SIZE=8;-- 压缩已存在的表ALTER TABLE 表名 ROW_FORMAT=COMPRESSED KEY_BLOCK_SIZE=8; 其中KEY_BLOCK_SIZE可以填写1，2，4等，数字越小压缩比例越高，但是读取的时候cpu也会相应的消耗变高 后记在测试环境，一张660mb的表被压缩到了85mb，压缩比例高到87%，耗时36s这是因为导致大量数据的字段保存着一个非常庞大的json，这个json中有非常多的相同的字符串压缩比例的高低有一部分原因是取决于被压缩的内容的重复程度]]></content>
@@ -143,6 +154,17 @@
       </categories>
       <tags>
         <tag>算法 解法器</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[Mac 删除自带的ABC输入法]]></title>
+    <url>%2FMac-%E5%88%A0%E9%99%A4%E8%87%AA%E5%B8%A6%E7%9A%84ABC%E8%BE%93%E5%85%A5%E6%B3%95%2F</url>
+    <content type="text"><![CDATA[mac自带的输入法快捷键ctrl + 空格，不能使用shift来切换中英，切换起来十分费力而又不能使用中/英键切换，因为touchbar的esc键我设置到了这个键位，必须有个实体按键才行所以我使用搜狗输入法，此时会发现ABC输入法会在某些时候切换回前台，就很烦。。。而ABC又无法删除，怎么解决呢 1.先备份~/Library/Preferences/com.apple.HIToolbox.plist2.首先安装 plistedit pro3.然后将其设置为打开plist文件的默认应用4.其次使用 sudo open ~/Library/Preferences/com.apple.HIToolbox.plist直接打开文件5.删掉AppleEnabledInputSources节点下的带有ABC字样的子节点6.保存重启电脑就ok了 注意这个方法可以不用关闭SIP还有不能cp出去改完cp回来，不然会被SIP还原，必须直接修改本体才行]]></content>
+      <categories>
+        <category>mac</category>
+      </categories>
+      <tags>
+        <tag>mac</tag>
       </tags>
   </entry>
   <entry>
@@ -200,6 +222,18 @@
       </categories>
       <tags>
         <tag>docker</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[windows jeankins 搭建]]></title>
+    <url>%2Fwindows-jeankins-%E6%90%AD%E5%BB%BA%2F</url>
+    <content type="text"><![CDATA[安装将war包放到任意目录，使用cmd切换到该目录执行 java -jar jenkins.war，记录安装过程中会出现的一个秘钥安装好后默认是8080端口，打开后输入秘钥进入jenkins 配置系统设置中需要配置的有 Global Tool Configuration中用到的基本都要配置 插件首先安装插件 Maven Integration plugin 然后创建job可以使用maven job了与git trigger来构建项目需要安装bitbucket plugin，并在相应的git仓库中设置hook 构建完成后如需将war包上传到ftp，需要下载插件 Publish Over FTP，并在设置中配置ftp服务器信息 并且在每一个任务中配置ftp的设置（需要注意的是Source files中的路径不加 / 是代表相对路径，相对于jenkins的workspace中该项目的目录）]]></content>
+      <categories>
+        <category>java</category>
+      </categories>
+      <tags>
+        <tag>java</tag>
+        <tag>jeankins</tag>
       </tags>
   </entry>
   <entry>
@@ -263,6 +297,17 @@
       </tags>
   </entry>
   <entry>
+    <title><![CDATA[java HashMap（1.8版本）]]></title>
+    <url>%2Fjava-HashMap%EF%BC%881-8%E7%89%88%E6%9C%AC%EF%BC%89%2F</url>
+    <content type="text"><![CDATA[HashMap在1.8之后做了性能优化，1.8之前，主要采用了链表结构 如图所示，每个链表中所有元素的hash都相同 (这里的hash是指经过HashMap的hash()二次处理过的hash值)，元素hash值相同称为冲突旧HashMap（指1.8之前）在寻找元素时先根据key计算hash，然后从table中找到对应的链表，然后遍历链表，找到具体的值，但是，当一个链表有太多元素时，遍历的时间就会变长，所以，在1.8时，新HashMap发生了改动，原先的链表可能会被替换成红黑树，因为红黑树在多元素时平均查找时间相对链表变得更短，当链表元素&gt;=8时，链表会被转换成红黑树，当红黑树元素&lt;=6时，会被还原成链表ref https://blog.csdn.net/kingmax54212008/article/details/79662407 HashMap在JDK1.8前后区别精简说 HashMap（jdk1.8）1.HashMap的链表中有一个假的指针，叫做next，由他来作为链表元素之间的连接 2.HashMap的索引叫做table，table是一个数组，其中每一个元素是链表的头元素，capacity是初始化HashMap的时候table的长度，默认16，loadfactor是加载因子，默认0.75，当table利用率达到loadFactor*100%时，就会触发HashMap扩容，也就是table扩容，然后重新计算每个元素在table中的index，再放到相应的index链表中 3.put方法 ①.判断键值对数组table[i]是否为空或为null，否则执行resize()进行扩容；②.根据键值key计算hash值得到插入的数组索引i，如果table[i]==null，直接新建节点添加，转向⑥，如果table[i]不为空，转向③；③.判断table[i]的首个元素是否和key一样，如果相同直接覆盖value，否则转向④，这里的相同指的是hashCode以及equals；④.判断table[i] 是否为treeNode，即table[i] 是否是红黑树，如果是红黑树，则直接在树中插入键值对，否则转向⑤；⑤.遍历table[i]，判断链表长度是否大于8，大于8的话把链表转换为红黑树，在红黑树中执行插入操作，否则进行链表的插入操作；遍历过程中若发现key已经存在直接覆盖value即可；⑥.插入成功后，判断实际存在的键值对数量size是否超多了最大容量threshold，如果超过，进行扩容 简单来说，就是先根据key的hash去table中找相应的链表（或者红黑树），然后先判断链表头，不是的话去看table的这个位置到底是链表还是红黑树，然后用相应的方法去新增或者覆盖 4.getget与put类似，都是根据key的hash来找到table中的链表（或者红黑树），然后遍历链表或者红黑树的查找方法来拿到value，具体流程为：先判断table有没有元素，有元素的话根据key的hash找到对应的链表（或者红黑树），然后判断头部的key与查找的key一样不（与put方法中类似，首先满足两个key的hash相同，然后只要两个key的地址相同或者equals相同即可判断是否一样，利用了“||”的短路原理，==要比equals节省资源），一样直接就是找到，不一致再去遍历链表，或者调用红黑树的查找方法 ref https://blog.csdn.net/qq_27093465/article/details/52207135 Java 8系列之重新认识HashMapref https://blog.csdn.net/qq_38182963/article/details/78942764 一个比较详尽的源码解读]]></content>
+      <categories>
+        <category>java</category>
+      </categories>
+      <tags>
+        <tag>java</tag>
+      </tags>
+  </entry>
+  <entry>
     <title><![CDATA[java hotspot版本虚拟机垃圾回收机制]]></title>
     <url>%2Fhotspot%E7%89%88%E6%9C%AC%E8%99%9A%E6%8B%9F%E6%9C%BA%E5%9E%83%E5%9C%BE%E5%9B%9E%E6%94%B6%E6%9C%BA%E5%88%B6%2F</url>
     <content type="text"><![CDATA[首先，堆中的内存分为三个大块(java8是两个，持久代被干掉了)，新生代和老年代，持久代，新生代为各种new出来的对象所在场所，老年代存放的是在多次GC都活下来的对象，持久代（也被称作方法区，存放各种静态文件，包括类，方法等）不会发生minor GC，当持久代满时，会触发full GC java8中，持久代被替换成metaspcace，metaspace不会占用虚拟机内存，占用的是本地内存 (1.7及1.7之前的版本持久代存放的是对象的方法等信息，持久代是占用堆内存的，1.8之后转移到了metaspace，metaspace占用的是本地内存，不会占用堆内存，类的元数据信息转移到Metaspace的原因是PermGen很难调整。PermGen中类的元数据信息在每次FullGC的时候可能会被收集，但成绩很难令人满意。而且应该为PermGen分配多大的空间很难确定，因为PermSize的大小依赖于很多因素，比如JVM加载的class的总数，常量池的大小，方法的大小等) 新生代分为三个区域，eden(伊甸园)，两个survivor区 老年代大多都是由标记整理，标记清除来整理空间 新生代比较有意思，他由于存放的一般都是比较新的对象，但一般对象的生命周期比较短，所以需要比较频繁的GC，但是呢，GC线程一启动，就会暂停其他线程，stop the world，所以就会有一个minior GC，来清理新生代 清理新生代使用的是复制算法，所有的新对象被生成在eden区，当eden区容量不够时，会触发minor GC，两个survivor区被分为From 和 To 区，触发minior GC时，eden区存活的大对象直接转移至老年代，不可达对象被直接清理，eden区剩余存活对象被转移至To区，From区存活的对象分两种情况，活过指定次数（可以设置）GC的对象会被转移到老年代，剩余存活对象也被转移到To区，minior GC结束时，From区是空的，下次执行minor GC时，From区和To区会互换身份 也就是说，每次minior GC结束后，总是有一个区是空的 需要注意的是，在minior GC过程中，如果To区满了，那么剩余本来会转移到To区的对象会被直接移到老年代，无论是否活过了指定次数的GC 而触发full GC的条件，就是年老代满时，或者方法区满时，或者调用System.gc（然而只是系统建议，并不一定会执行）]]></content>
@@ -309,6 +354,17 @@
       </tags>
   </entry>
   <entry>
+    <title><![CDATA[java comparable 小记]]></title>
+    <url>%2F%E5%B0%8F%E8%AE%B0%2F</url>
+    <content type="text"><![CDATA[总是忘记java中compare默认的比较顺序，在这里记录一下 o1.compareTo(o2);或者int compare(int o1, int o2); compare是从小到大排序 如果该函数返回负数，o1在o2前，正数o2在o1前，返回0则相等 就是返回正数的话，当前对象（调用compareTo方法的对象o1）要排在比较对象（compareTo传参对象o2）后面，返回负数的话，放在前面]]></content>
+      <categories>
+        <category>java</category>
+      </categories>
+      <tags>
+        <tag>java</tag>
+      </tags>
+  </entry>
+  <entry>
     <title><![CDATA[windows部分cmd命令(shell脚本)]]></title>
     <url>%2Fwindows%E9%83%A8%E5%88%86cmd%E5%91%BD%E4%BB%A4%2F</url>
     <content type="text"><![CDATA[cmd命令/bat set title=tomcat使用set来定义变量，使用%tile%来读取变量，例如echo %title%call命令可以在一个bat中调用另一个bat，并且子bat的结束并不会导致调用它的bat结束start cmd 可以以一个新的窗口启动命令，start cmd /c 为在新窗口执行完后关闭，start cmd /k 相反，start cmd后如果需要指定多条命令，可以使用&amp;&amp;将多条命令连接echo.为显示回车 if exist c:\temp\a.txt( echo &quot;exist&quot; ) else ( &quot;echo not exsit&quot; ) 这样写if语句，可以使用exsit或者not exist taskkill /F 是强制，/FI 是搜索, /T是结束该进程和相关的子进程，例如taskkill /F /T /FI &quot;WINDOWTITLE eq tomcat&quot; 在脚本后增加pause命令，可以使脚本运行窗口停留在pause的位置，方便观察报错信息 netstat -ano | findstr 端口号可以找见端口号对应的记录，记录的最后一行为pidnetstat -ano | findstr 8011]]></content>
@@ -342,6 +398,18 @@
       <tags>
         <tag>java</tag>
         <tag>maven</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[java IO 简略样例]]></title>
+    <url>%2F%E7%AE%80%E7%95%A5%E6%A0%B7%E4%BE%8B%2F</url>
+    <content type="text"><![CDATA[读文件123456FileInputStream fileInputStream = new FileInputStream(&quot;C:\\Users\\admini\\Desktop\\h5(7).html&quot;);BufferedInputStream bufferedInputStream = new BufferedInputStream(fileInputStream);byte[] data = new byte[bufferedInputStream.available()]; //获得流的长度bufferedInputStream.read(data);String template = new String(data); 需要注意的是，可以不需要BufferedInputStream 直接使用FileInputStream来读取，BufferedInputStream 继承了FileInputStream，BufferedInputStream 效率更高 写文件12345FileOutputStream fileOutputStream = new FileOutputStream(&quot;C:\\Users\\admini\\Desktop\\123.txt&quot;);BufferedOutputStream bufferedOutputStream = new BufferedOutputStream(fileOutputStream);bufferedOutputStream.write(&quot;asdasdasd&quot;.getBytes());bufferedOutputStream.flush();bufferedInputStream.close(); 需要注意的是，可以不需要BufferedOutputStream 直接使用FileOutputStream 来写入但是，FileOutputStream 每一次写都是一次io，效率低，BufferedOutputStream 的write()会现将数据缓存，然后写入，然后再缓存再写入，减少io非常重要的一点是，触发写入的时间是缓冲区填满的时候，当流的最后一段没有将缓冲区填满，那么就不会触发写入，导致数据丢失这时需要使用flush()方法强制将将缓冲区数据写入，并且清空缓冲区，调用close()方法也可以实现这个功能，因为close()方法中调用flush()方法 ref https://www.imooc.com/article/10791]]></content>
+      <categories>
+        <category>java</category>
+      </categories>
+      <tags>
+        <tag>java</tag>
+        <tag>IO</tag>
       </tags>
   </entry>
   <entry>
@@ -438,6 +506,28 @@
       <tags>
         <tag>java</tag>
         <tag>web应用</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[初步记录编写sql的分析流程]]></title>
+    <url>%2F%E5%88%9D%E6%AD%A5%E8%AE%B0%E5%BD%95%E7%BC%96%E5%86%99sql%E7%9A%84%E5%88%86%E6%9E%90%E6%B5%81%E7%A8%8B%2F</url>
+    <content type="text"><![CDATA[在编写一条复杂sql查询时，在不考虑性能的前提下，我们需要明确一个目标—我们需要什么？ 这个问题是非常重要的，我们需要哪些字段，一旦明确了主要查询的字段，那么这个字段所存在的表即为我们要查询的根表（也就是说，这张表作为from开头的第一张表，其余不管是left join还是在where条件中做判断的内容，都需要他的其中的字段作为关联依据），不关联查多少张表，都会由他来进行派生（不一定都由他来进行派生，但都是基于他关联出来的表），在多表联查的时候，可以多使用left join这样的关联进行多表之间的关联，这样不仅提高了编写效率，在sql的逻辑上也会非常清晰，并且where后边的数据也会比之前更简洁。在判断条件时可以对根表的字段进行判断，这样的逻辑线会非常清楚。]]></content>
+      <categories>
+        <category>杂谈</category>
+      </categories>
+      <tags>
+        <tag>杂谈</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[分析系一个问题的流程]]></title>
+    <url>%2F%E5%88%86%E6%9E%90%E7%B3%BB%E4%B8%80%E4%B8%AA%E9%97%AE%E9%A2%98%E7%9A%84%E6%B5%81%E7%A8%8B%2F</url>
+    <content type="text"><![CDATA[从工作当中，暂时提炼出来一个分析问题的流程，很简单的一句话，把一个复杂的事务进行拆分，一切复杂的事务大多是由非常多的零碎的小碎片组成，但他们并不是分散的，而是由每个小碎片中的某个部分串联在一起，而自己要做的时候，就是把每一个小碎片整理出来，分类操做。 其中具体的流程为，先用纸和笔（非常非常推荐使用这种方式，而不是使用电子设备等其他的电子辅助装置来进行逻辑分析）来进行模块细分，提炼出老一个大框架，整理出大框架的一条线，并按照这个大框架来填充每一个小模块，最终是整个流程变得完整。 例如，在做一个会返回许多字段的接口时，先把这些字段进行详细划分，整理出每个小模块所属的字段，把它们分类，然后整理出这些小模块中有哪个字段能跟大框架的主线绑定，分门别类罗列出来，然后，以此填充到大框架中，当程序走的时候，从框架主线的一头开始，挨个穿起小模块，最后组装成一个复杂的结果。 这样做十分有利于后期的维护，只需改动小模块中的逻辑，即可完成对整个框架的修复，使得程序易于维护。]]></content>
+      <categories>
+        <category>杂谈</category>
+      </categories>
+      <tags>
+        <tag>杂谈</tag>
       </tags>
   </entry>
   <entry>
