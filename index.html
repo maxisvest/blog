@@ -390,6 +390,184 @@
   
   
   <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://blog.maxisvest.com/关于项目中线程池治理的实践/">
+
+    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="小于同学">
+      <meta itemprop="description" content="技术 生活 原创">
+      <meta itemprop="image" content="/images/avatarPicture/IMG_3667.JPG">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Maxisvest的博客">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h2 class="post-title" itemprop="name headline">
+                
+                
+                <a href="/关于项目中线程池治理的实践/" class="post-title-link" itemprop="url">关于项目中线程池治理的实践</a>
+              
+            
+          </h2>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+
+            
+            
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+
+              
+                
+              
+
+              <time title="创建时间：2022-07-11 15:10:29" itemprop="dateCreated datePublished" datetime="2022-07-11T15:10:29+00:00">2022-07-11</time>
+            
+
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing"><a href="/categories/实践/" itemprop="url" rel="index"><span itemprop="name">实践</span></a></span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+            
+          
+
+          
+          
+
+          
+            <span style="display:none">
+              阅读次数: <span class="busuanzi-value" id="busuanzi_value_page_pv"></span>
+            </span>
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          <h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><p>实际项目中使用线程池的场景往往很多，比如批量刷数据，批量获取数据等用来提升接口或代码运行速度，亦或是通过提交异步任务来让某些不是特别需要实效性的任务异步执行，减少当前主线程的运行时间，而jdk也给我们提供了<code>Executors</code>类来支持我们很方便的创建和使用线程池，spring也封装了线程池加强使用体验。</p>
+<p>但是在项目中，我们更多的是能看到各式各样的线程池使用情况，有自己创造的，也有直接使用公共的（例如<code>CompletableFuture</code>），这些在使用上完全没有问题，但是有如下几个<strong>弊端</strong>：</p>
+<blockquote>
+<ul>
+<li>1.线程池容易在配置上踩坑，比如线程池的队列打满后，才会触发线程池新创建线程，如果使用的是无界队列，那么其实最大线程数的参数（<code>maximumSize</code>）就失效了</li>
+<li>2.部分版本的线程池有bug，比如java8中的<code>Executors.newSingleThreadExecutor()</code>就会出现提前GC被关闭的问题（详见<a href="https://blog.csdn.net/xmtblog/article/details/113488280" target="_blank" rel="noopener">这里</a>），而代码中大家经常又会复制粘贴某些代码，就导致有问题的代码会污染项目</li>
+<li>3.在项目变得庞大起来后，过多的线程池，导致线程数量剧增，频繁切换线程导致对系统资源的消耗，<strong>其实过多的线程并不能够带来更多的性能上的提升，cpu一共就固定的几个核心，也就是说他最多并行执行的线程也就是固定的数量，而且除开项目中我们可以把控的线程数之外，第三方依赖和系统进程都会有线程使用cpu，所以对于线程数的设计，需要针对项目去分析</strong></li>
+<li>4.往往不知道如何配置线程池的参数，也往往不知道线程池的利用率是怎么样的，上线后不知道效果如何</li>
+<li>5.线程池往往没法直接继承父线程的上下文，对于需要使用<code>traceId</code>等跟踪的情况下，会比较麻烦</li>
+</ul>
+</blockquote>
+<p>我们需要提出一个解决方案，来解决上述的问题，在我们公司实际项目探索中，发现我们使用线程池的方式多种多样，如下图<br>
+          <!--noindex-->
+          
+            <div class="post-button text-center">
+              <a class="btn" href="/关于项目中线程池治理的实践/#more" rel="contents">
+                阅读全文 &raquo;
+              </a>
+            </div>
+          
+          <!--/noindex-->
+        
+      
+    </p></div>
+
+    
+
+    
+    
+    
+
+    
+
+    
+      
+    
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
     <link itemprop="mainEntityOfPage" href="https://blog.maxisvest.com/我们公司为什么从Mysql切换成TibDB/">
 
     <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
@@ -1904,178 +2082,6 @@
 
 
     
-      
-
-  
-
-  
-  
-  
-
-  
-
-  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://blog.maxisvest.com/排查一次线上connect-reset-by-peer的异常/">
-
-    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="小于同学">
-      <meta itemprop="description" content="技术 生活 原创">
-      <meta itemprop="image" content="/images/avatarPicture/IMG_3667.JPG">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Maxisvest的博客">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h2 class="post-title" itemprop="name headline">
-                
-                
-                <a href="/排查一次线上connect-reset-by-peer的异常/" class="post-title-link" itemprop="url">排查一次线上connect reset by peer的异常</a>
-              
-            
-          </h2>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-
-            
-            
-            
-
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-
-              
-                
-              
-
-              <time title="创建时间：2020-03-29 09:38:13" itemprop="dateCreated datePublished" datetime="2020-03-29T09:38:13+00:00">2020-03-29</time>
-            
-
-            
-          </span>
-
-          
-            <span class="post-category">
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing"><a href="/categories/网络/" itemprop="url" rel="index"><span itemprop="name">网络</span></a></span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-            
-          
-
-          
-          
-
-          
-            <span style="display:none">
-              阅读次数: <span class="busuanzi-value" id="busuanzi_value_page_pv"></span>
-            </span>
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          <p>公司业务系统中有一个功能是某个系统客户端要定时加载目标jar包到系统中实现功能的热扩展，线上出了一个很奇怪的异常，是jar包提供端出现了connect reset by peer，隔一段时间就会报异常<br>并且业务功能并没有受到影响，但是毕竟是生产环境，一点错误都有可能造成损失，问题还是要看的啊</p>
-<img src="/排查一次线上connect-reset-by-peer的异常/aaa.png">
-<p>首先定位问题，该异常由jar包提供端抛出，jar删除后便不再抛出，由此基本可以缩小范围至客户端加载jar包代码，但是光看代码似乎并没有什么大的问题<br>所以我需要看看服务端抛异常的时候究竟在干什么，这里就用到了<code>tcpdump</code>，用这个工具将服务端的tcp日志打印出来</p>
-<p>服务端部署在docker容器中，首先使用<code>nsenter</code>将命名空间锁定到容器的pid<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">//获取容器id/name</span><br><span class="line">docker ps | grep xxx</span><br><span class="line">//获取PID</span><br><span class="line">docker inspect --format &quot;&#123;&#123;.State.Pid&#125;&#125;&quot; container_id/name</span><br><span class="line">使用nsenter切换网络命名空间</span><br><span class="line">nsenter -n -t pid</span><br></pre></td></tr></table></figure></p>
-<p>之后查找客户端所在的ip地址，也就是<code>tcpdump</code>中要用到的host信息，我们要锁定查找范围为服务端到客户端之间的所有连接</p>
-<p>使用命令<br><code>tcpdump host 你的host -w tcphistory.pcap</code><br>
-          <!--noindex-->
-          
-            <div class="post-button text-center">
-              <a class="btn" href="/排查一次线上connect-reset-by-peer的异常/#more" rel="contents">
-                阅读全文 &raquo;
-              </a>
-            </div>
-          
-          <!--/noindex-->
-        
-      
-    </p></div>
-
-    
-
-    
-    
-    
-
-    
-
-    
-      
-    
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
   </section>
 
   
@@ -2125,7 +2131,7 @@
                 
                   <a href="/archives/">
                 
-                    <span class="site-state-item-count">41</span>
+                    <span class="site-state-item-count">42</span>
                     <span class="site-state-item-name">日志</span>
                   </a>
                 </div>
@@ -2164,7 +2170,9 @@
                     
                       
                     
-                    <span class="site-state-item-count">13</span>
+                      
+                    
+                    <span class="site-state-item-count">14</span>
                     <span class="site-state-item-name">分类</span>
                   </a>
                 </div>
