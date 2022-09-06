@@ -1,8 +1,8 @@
 https://blog.maxisvest.com/关于项目中线程池治理的实践/
+https://blog.maxisvest.com/一种可以整合spring-IoC机制的可插拔部署的技术思路/
 https://blog.maxisvest.com/我们公司为什么从Mysql切换成TibDB/
 https://blog.maxisvest.com/github-pages-gitalk自动化部署与初始化/
 https://blog.maxisvest.com/关于我的博客从腾讯云迁移至github以及评论插件valine切换的一些琐事/
-https://blog.maxisvest.com/一种可以整合spring-IoC机制的可插拔部署的技术思路/
 https://blog.maxisvest.com/全链路日志追踪方案及核心代码分析/
 https://blog.maxisvest.com/使用netatalk打造一款属于自己的Time-Machine在线备份服务器/
 https://blog.maxisvest.com/camunda引擎初探/
